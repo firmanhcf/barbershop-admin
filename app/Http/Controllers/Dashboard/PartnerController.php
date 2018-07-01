@@ -68,13 +68,13 @@ class PartnerController extends Controller
 
     				return redirect()
 					->back()
-					->with('success', 'New Partner has been saved.');
+					->with('success', 'Data Partner telah disimpan.');
     			}
     			else{
     				return redirect()
 					->back()
 					->withErrors([
-						'err_msg' => 'Failed to save PKS for new partner, please contact administrator.',
+						'err_msg' => 'Gagal menyimpan PKS, hubungi administrator untuk info lebih lanjut.',
 					]);
     			}
 
@@ -84,7 +84,7 @@ class PartnerController extends Controller
     			return redirect()
 				->back()
 				->withErrors([
-					'err_msg' => 'Failed to create user for new partner, please contact administrator.',
+					'err_msg' => 'Gagal membuat akun partner, hubungi administrator untuk info lebih lanjut.',
 				]);
     		}
     	}
@@ -92,7 +92,7 @@ class PartnerController extends Controller
     		return redirect()
 			->back()
 			->withErrors([
-				'err_msg' => 'Failed to save new partner, please contact administrator.',
+				'err_msg' => 'Gagal menyimpan partner, hubungi administrator untuk info lebih lanjut.',
 			]);
     	}
     	
@@ -148,13 +148,13 @@ class PartnerController extends Controller
 
 				return redirect()
 				->back()
-				->with('success', 'Partner Data has been updated.');
+				->with('success', 'Data partner telah diperbarui');
 			}
 			else{
 				return redirect()
 				->back()
 				->withErrors([
-					'err_msg' => 'Failed to save PKS for new partner, please contact administrator.',
+					'err_msg' => 'Gagal menyimpan PKS, hubungi administrator untuk info lebih lanjut.',
 				]);
 			}
 
@@ -163,7 +163,7 @@ class PartnerController extends Controller
     		return redirect()
 			->back()
 			->withErrors([
-				'err_msg' => 'Failed to save new partner, please contact administrator.',
+				'err_msg' => 'Gagal menyimpan data partner hubungi administrator untuk info lebih lanjut.',
 			]);
     	}
 
@@ -177,13 +177,13 @@ class PartnerController extends Controller
     	if ($partner->trashed()) {
 		    return redirect()
 				->back()
-				->with('success', 'Partner Data has been deleted.');
+				->with('success', 'Data partner telah dihapus');
 		}
 		else{
 			return redirect()
 				->back()
 				->withErrors([
-					'err_msg' => 'Failed to delete partner, please contact administrator.',
+					'err_msg' => 'Gagal menghapus partner, hubungi administrator untuk info lebih lanjut.',
 				]);
 		}
 

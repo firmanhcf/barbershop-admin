@@ -10,11 +10,14 @@
                     <ul aria-expanded="true" class="collapse in">
                         <li><a href="{{ url('/') }}"> Dashboard Utama </a></li>
                         <li><a href="{{ url('transaction') }}"> Transaksi </a></li>
+                        @if(Auth::user()->staff_position < 7 || Auth::user()->staff_position == 8)
+                        <li><a href="{{ url('operational') }}"> Operasional Outlet </a></li>
+                        @endif
                     </ul>
                 </li>
 
                 @if(Auth::user()->staff_position < 6 || Auth::user()->staff_position == 7)
-                <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-users"></i><span class="">Partnership </span></a>
+                <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-users"></i><span class="">Kemitraan </span></a>
                     <ul aria-expanded="false" class="collapse">
                         @if(Auth::user()->staff_position < 6)
                         <li><a href="{{ url('partner') }}"> Partner </a></li>
@@ -25,9 +28,10 @@
                 @endif
 
                 @if(Auth::user()->staff_position < 6)
-                <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="">Management </span></a>
+                <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="">Manajemen </span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ url('employee') }}"> Karyawan </a></li>
+                        <li><a href="{{ url('asset') }}"> Aset </a></li>
                     </ul>
                 </li>
                 @endif
@@ -35,7 +39,7 @@
                 @if(Auth::user()->staff_position == 0)
                 <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-gear"></i><span class="">Admin </span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="{{ url('account') }}"> User Login </a></li>
+                        <li><a href="{{ url('account') }}"> Akun Login </a></li>
                     </ul>
                 </li>
                 @endif

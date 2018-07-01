@@ -5,7 +5,7 @@ $('.datepicker').datepicker({
 
 
 function setOutlet(){
-    if($('#staff_position').val()=='6' || $('#staff_position').val()=='8'){
+    if($('#staff_position').val()=='6' || $('#staff_position').val()=='8' || $('#staff_position').val()=='9' || $('#staff_position').val()=='10'){
         $('#outlet_id').attr('readonly', false);
         $('#outlet_id').css('pointer-events', '');
     }
@@ -20,7 +20,7 @@ function getRegency(){
     $.get(APP_URL+"/config/regency/"+$('#province').val(), function(res, status) {
         $('#regency').html("");
 
-        var strOpt = '<option value="">Select Regency</option>';
+        var strOpt = '<option value="">Pilih Kabupaten/Kota</option>';
         for (var i = 0; i < res.length; i++) {
             strOpt += '<option value="'+res[i].id+'">'+res[i].name+'</option>';
         }
@@ -34,7 +34,7 @@ function getDistrict(){
     $.get(APP_URL+"/config/district/"+$('#regency').val(), function(res, status) {
         $('#district').html("");
 
-        var strOpt = '<option value="">Select District</option>';
+        var strOpt = '<option value="">Pilih Kecamatan</option>';
         for (var i = 0; i < res.length; i++) {
             strOpt += '<option value="'+res[i].id+'">'+res[i].name+'</option>';
         }
@@ -138,79 +138,79 @@ var form_validation = function() {
                     }
                 },
                 messages: {
-                    "partner_id": {
-                        required: "Please enter a partner ID",
-                        minlength: "Your Partner ID must consist of at least 8 characters"
+                    "nik": {
+                        required: "Masukkan ID karyawan",
+                        minlength: "ID Karyawan minimal terdiri dari 8 Karakter"
                     },
                     "name": {
-                        required: "Please enter a name",
-                        minlength: "Your name must consist of at least 3 characters"
+                        required: "Masukkan nama karyawan",
+                        minlength: "Nama Karyawan minimal terdiri dari 3 karakter"
                     },
                     "province": {
-                        required: "Please select a province"
+                        required: "Silakan pilih provinsi"
                     },
                     "regency": {
-                        required: "Please select a regency"
+                        required: "Silakan pilih kabupaten/kota"
                     },
                     "district": {
-                        required: "Please select a district"
+                        required: "Silakan pilih Kecamatan"
                     },
                     "address": {
-                        required: "Please enter an address",
-                        minlength: "Your address must consist of at least 10 characters"
+                        required: "Masukkan alamat karyawan",
+                        minlength: "Alamat karyawan minimal terdiri dari 10 karakter"
                     },
                     "birthdate": {
-                        required: "Please select a birthdate"
+                        required: "Pilih tanggal lahir"
                     },
                     "religion": {
-                        required: "Please select a religion"
+                        required: "Pilih agama"
                     },
                     "id_card_number": {
-                        required: "Please enter an id card number",
+                        required: "Masukkan nomor KTP/SIM/Paspor",
                         minlength: "Your id card number must consist of at least 8 characters"
                     },
                     "last_education": {
-                        required: "Please select a last education"
+                        required: "Pilih pendidikan terakhir"
                     },
                     "staff_status": {
-                        required: "Please select a employee status"
+                        required: "Pilih status karyawan"
                     },
                     "staff_position": {
-                        required: "Please select a employee position"
+                        required: "pilih posisi karyawan"
                     },
                     "id_card_files": {
-                        required: "Please upload a scan of ID card"
+                        required: "Pilih file scan kartu identitas, berupa image"
                     },
                     "last_education_certificate": {
-                        required: "Please upload a certificate of last education"
+                        required: "Pilih file ijazah terakhir, berupa file PDF"
                     },
-                    "email": "Please enter a valid email address",
+                    "email": "Masukkan alamat email aktif",
                     "password": {
-                        required: "Please provide a password",
-                        minlength: "Your password must be at least 8 characters long"
+                        required: "Masukkan password",
+                        minlength: "Password minimal terdiri dari 8 karakter"
                     },
                     "confirm_password": {
-                        required: "Please provide a password",
-                        minlength: "Your password must be at least 8 characters long",
-                        equalTo: "Please enter the same password as above"
+                        required: "Masukkan password",
+                        minlength: "Password minimal terdiri dari 8 karakter",
+                        equalTo: "Password harus sama"
                     },
                     "pks_number": {
-                        required: "Please enter a pks number"
+                        required: "Masukkan nomor PKS"
                     },
                     "pks_date": {
-                        required: "Please enter a pks start date"
+                        required: "Pilih tanggal pembuatan PKS"
                     },
                     "pks_start_date": {
-                        required: "Please enter a pks start date"
+                        required: "Pilih tanggal berlaku PKS"
                     },
                     "pks_end_date": {
-                        required: "Please enter a pks end date"
+                        required: "Pilih tanggal berakhir PKS"
                     },
                     "salary": {
-                        required: "Please enter a salary"
+                        required: "Masukkan nominal upah"
                     },
                     "pks_file": {
-                        required: "Please upload a pks file"
+                        required: "Pilih file PKS, berupa file PDF"
                     }
                 }
             })

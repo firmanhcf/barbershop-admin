@@ -40,12 +40,12 @@ class ProfileController extends Controller
     {
         if (!(\Hash::check($request->get('current_password'), \Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+            return redirect()->back()->with("error","Passwrod lama tidak cocok. Silakan coba lagi.");
         }
  
         if(strcmp($request->get('current_password'), $request->get('new_password')) == 0){
             //Current password and new password are same
-            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+            return redirect()->back()->with("error","Passwaord baru harus berbeda dengan password lama. Silakan masukkan password yang berbeda.");
         }
  
         //Change Password
@@ -53,7 +53,7 @@ class ProfileController extends Controller
         $user->password = bcrypt($request -> new_password);
         $user->save();
  
-        return redirect()->back()->with("success","Password changed successfully.");
+        return redirect()->back()->with("success","Password telah diubah.");
     }
 
     public function changeProfilePhoto(Request $request){
@@ -75,13 +75,13 @@ class ProfileController extends Controller
     	if($employee -> save()){
     		return redirect()
 				->back()
-				->with('success', 'Profile photo has been updated.');
+				->with('success', 'Foto profil telah diubah.');
     	}
     	else{
     		return redirect()
 				->back()
 				->withErrors([
-					'err_msg' => 'Failed to save profile photo, please contact administrator.',
+					'err_msg' => 'Gagal uplod foto profil, hubungi administrator untuk info lebih lanjut.',
 				]);
     	}
 

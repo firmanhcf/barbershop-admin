@@ -215,7 +215,7 @@ return [
 
     'employee_status' => [
         1 => 'Management',
-        2 => 'Employee'
+        2 => 'Employee',
     ],
 
     'employee_position' => [
@@ -227,6 +227,28 @@ return [
         5 => 'Dir Marketing & Sales', 
         6 => 'Supervisor',
         7 => 'Partner',
-        8 => 'Capster'
+        8 => 'Kapster',
+        9 => 'Terapis',
+        10 => 'Trainer',
     ],
+
+    'asset_status' => [
+        0 => 'Rusak',
+        1 => 'Baik',
+    ],
+
+    'operational_purose' => [
+        1 => 'Administrasi', 
+        2 => 'Langsung', 
+        3 => 'Marketing', 
+        4 => 'Operasional', 
+        5 => 'Umum',
+    ],
+
+    'unit' => [
+        1 => 'Botol',
+        2 => 'Dus',
+        3 => 'Paket',
+        4 => 'Pcs',
+    ]
 ];

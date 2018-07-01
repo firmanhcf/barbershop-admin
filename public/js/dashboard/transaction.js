@@ -1,3 +1,9 @@
+$('.datepicker').datepicker({
+    format: 'dd/mm/yyyy'
+}); 
+
+$('.datetimepicker').datetimepicker();
+
 
 function getPrice(rowid){
     for (var i = 0; i < PRICES.length; i++) {
@@ -9,6 +15,26 @@ function getPrice(rowid){
     if($('#service_'+rowid).val() == ""){
         $('#price_'+rowid).val(0);
     }
+
+    var selectedService = $('#service_'+rowid).val();
+    var serviceCode = selectedService.split("-");
+    var staffPosition = 8;
+
+    if(serviceCode[0] == 3){
+        staffPosition = 9;
+    }
+    else if(serviceCode[0] == 4){
+        staffPosition = 10;
+    }
+
+    var strOpt = '<option value="">Pilih Kapster/Terapis/Trainer</option>';
+    for (var i = 0; i < CUSTSERV.length; i++) {
+        if(CUSTSERV[i].staff_position == staffPosition){
+            strOpt += '<option value="'+CUSTSERV[i].id+'">'+CUSTSERV[i].name+'</option>';
+        }
+    }
+
+    $("#capster_"+rowid).html(strOpt);
 
     countSubtotal(rowid);
 }
@@ -45,25 +71,33 @@ function getOutletInfo(){
 
         PRICES = [];
 
-        $('#capster_id').html("");
+        // $('#capster_id').html("");
 
-        var strOpt = '<option value="">Select Capster</option>';
+        // var strOpt = '<option value="">Pilih Kapster</option>';
         for (var i = 0; i < res.capsters.length; i++) {
-            strOpt += '<option value="'+res.capsters[i].id+'">'+res.capsters[i].name+'</option>';
+            
+            var custService = {
+                id : res.capsters[i].id,
+                name : res.capsters[i].name,
+                staff_position : res.capsters[i].staff_position
+            };
+
+            CUSTSERV.push(custService);
+
         }
 
-        $('#capster_id').html(strOpt);
+        // $('#capster_id').html(strOpt);
                     
         for(var i = 0; i < res.prices.length; i++){
 
             var adult = {
-                name : res.prices[i].name+" - Adult",
+                name : res.prices[i].name+" - Dewasa",
                 service_id : res.prices[i].service_id+"-"+1,
                 price : res.prices[i].adult_price
             };
 
             var kid = {
-                name : res.prices[i].name+" - Kid",
+                name : res.prices[i].name+" - Anak",
                 service_id : res.prices[i].service_id+"-"+2,
                 price : res.prices[i].kid_price
             };
@@ -74,7 +108,7 @@ function getOutletInfo(){
 
         $('#service_1').html("");
         
-        var strOpt = '<option value="">Select Service</option>';
+        var strOpt = '<option value="">Pilih Layanan</option>';
         for (var i = 0; i < PRICES.length; i++) {
             strOpt += '<option value="'+PRICES[i].service_id+'">'+PRICES[i].name+'</option>';
         }
@@ -90,12 +124,11 @@ function redrawTable(rowid){
     var row = '';
     for (var i = rowid+1; i <= TRANDETROW; i++) {
 
-        console.log(i);
         row += '<tr id="row_'+(i-1)+'">';
         row += '<td id="row_num_'+(i-1)+'">'+(i-1)+'</td>';
         row += '<td id="service_num_'+(i-1)+'">';
         row += '<select class="form-control input-sm" name="service_'+(i-1)+'" id="service_'+(i-1)+'" onchange="getPrice('+(i-1)+')">';
-        row += '<option value="">Select Service</option>';
+        row += '<option value="">Pilih Layanan</option>';
 
         for (var j = 0; j < PRICES.length; j++) {
 
@@ -110,6 +143,38 @@ function redrawTable(rowid){
 
         row += '</select>';
         row += '</td>';
+
+        row += '<td id="capster_num_'+(i-1)+'">';
+        row += '<select class="form-control input-sm" name="capster_'+(i-1)+'" id="capster_'+(i-1)+'" >';
+        
+        var selectedService = $('#service_'+i).val();
+        var serviceCode = selectedService.split("-");
+        var staffPosition = 8;
+
+        if(serviceCode[0] == 3){
+            staffPosition = 9;
+        }
+        else if(serviceCode[0] == 4){
+            staffPosition = 10;
+        }
+
+        row +=  '<option value="">Pilih Kapster/Terapis/Trainer</option>';
+        for (var j = 0; j < CUSTSERV.length; j++) {
+            
+            if(CUSTSERV[j].staff_position == staffPosition){
+
+                var strSelected = "";
+                if(CUSTSERV[j].id == $('#capster_'+i).val()){
+                    strSelected = "selected";
+                }
+
+                row += '<option value="'+CUSTSERV[j].id+'" '+strSelected+'>'+CUSTSERV[j].name+'</option>';
+            }
+        }
+
+        row += '</select>';
+        row += '</td>';
+
         row += '<td id="price_num_'+(i-1)+'">';
         row += '<input type="text" class="form-control input-sm" id="price_'+(i-1)+'" name="price_'+(i-1)+'" value="'+$('#price_'+i).val()+'" readonly>';
         row += '</td>';
@@ -168,7 +233,7 @@ function addRow(){
     row += '<td id="row_num_'+TRANDETROW+'">'+TRANDETROW+'</td>';
     row += '<td id="service_num_'+TRANDETROW+'">';
     row += '<select class="form-control input-sm" name="service_'+TRANDETROW+'" id="service_'+TRANDETROW+'" onchange="getPrice('+TRANDETROW+')">';
-    row += '<option value="">Select Service</option>';
+    row += '<option value="">Pilih Layanan</option>';
 
     for (var i = 0; i < PRICES.length; i++) {
         row += '<option value="'+PRICES[i].service_id+'">'+PRICES[i].name+'</option>';
@@ -176,6 +241,13 @@ function addRow(){
 
     row += '</select>';
     row += '</td>';
+
+    row += '<td id="capster_num_'+TRANDETROW+'">';
+    row += '<select class="form-control input-sm" name="capster_'+TRANDETROW+'" id="capster_'+TRANDETROW+'">';
+    row += '<option value="">Pilih Kapster/Terapis/Trainer</option>';
+    row += '</select>';
+    row += '</td>';
+
     row += '<td id="price_num_'+TRANDETROW+'">';
     row += '<input type="text" class="form-control input-sm" id="price_'+TRANDETROW+'" name="price_'+TRANDETROW+'" value="0" readonly>';
     row += '</td>';
@@ -227,14 +299,14 @@ var form_validation = function() {
                 },
                 messages: {
                     "invoice_num": {
-                        required: "Please enter an invoice number",
-                        minlength: "Your invoice number must consist of at least 8 characters"
+                        required: "Masukkan nomor invoice",
+                        minlength: "Nomor invoice minimal teridiri dari 8 karakter"
                     },
                     "outlet_id": {
-                        required: "Please select an outlet"
+                        required: "Silakan pilih outlet"
                     },
                     "capster_id": {
-                        required: "Please select a capster"
+                        required: "Silakan pilih kapster"
                     }
                 }
             })

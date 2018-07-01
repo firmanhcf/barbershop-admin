@@ -4,13 +4,13 @@
 
 @section('content')
 
-<div class="unix-login">
+<div class="unix-login purple-bg">
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-lg-4">
                 <div class="login-content card">
-                    <div class="login-form">
-                        <h4>Login</h4>
+                    <div class="login-form m-t-30 m-b-30">
+                        <h4><strong>BIG SMILE DASHBOARD</strong></h4>
                         @if (count($errors))
                             <div class="alert alert-danger alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -24,11 +24,11 @@
                         <form method="POST">
                             <div class="form-group">
                                 <label>Email address</label>
-                                <input type="email" name="email" class="form-control input-sm" placeholder="Type your email...">
+                                <input type="email" name="email" class="form-control input-sm" placeholder="Masukkan alamat email...">
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" name="password" class="form-control input-sm" placeholder="Type your password...">
+                                <input type="password" name="password" class="form-control input-sm" placeholder="Masukkan password...">
                             </div>
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-15">Sign in</button>
@@ -41,4 +41,7 @@
     </div>
 </div>
 
+@endsection
+@section('addScript')
+<script src="{{ asset('js/dashboard/login.js') }}"></script>
 @endsection

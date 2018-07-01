@@ -1,12 +1,12 @@
 
 document.querySelector('.sweet-confirm').onclick = function(){
     swal({
-            title: "Are you sure to update this data?",
-            text: "Your account information will be recorded as last updater",
+            title: "Apakah Anda yakin akan memperbarui data tersebut?",
+            text: "Akun Anda akan tercatat sebagai last updater",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, update it",
+            confirmButtonText: "Ya, Update",
             closeOnConfirm: false
         },
         function(){

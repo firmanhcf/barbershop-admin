@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Admin Account List')
+@section('title', 'Admin Daftar Akun')
 
 @section('navbar')
     @include('partials.navbar')
@@ -20,7 +20,7 @@
     <!-- Bread crumb -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-primary">Account List</h4>
+            <h4 class="text-primary">Daftar Akun</h4>
         </div>
     </div>
     <!-- End Bread crumb -->
@@ -35,7 +35,7 @@
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs profile-tab" role="tablist">
-                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#list" role="tab"><i class="fa fa-table"></i> Account List</a> </li>
+                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#list" role="tab"><i class="fa fa-table"></i> Daftar Akun</a> </li>
                         
                     </ul>
 
@@ -50,11 +50,11 @@
                                                 @if(Auth::user()->staff_position == 0)
                                                 <th>Act</th>
                                                 @endif
-                                                <th>Account ID</th>
-                                                <th>Name</th>
+                                                <th>ID Akun</th>
+                                                <th>Nama</th>
                                                 <th>Email</th>
                                                 <th>Status</th>
-                                                <th>Position</th>
+                                                <th>Posisi</th>
                                                 
                                             </tr>
                                         </thead>

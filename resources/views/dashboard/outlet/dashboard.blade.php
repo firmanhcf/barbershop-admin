@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Daftar Partner')
+@section('title', 'Daftar Outlet')
 
 @section('navbar')
     @include('partials.navbar')
@@ -21,7 +21,7 @@
     <!-- Bread crumb -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-primary">Partner</h4>
+            <h4 class="text-primary">Outlet</h4>
         </div>
     </div>
     <!-- End Bread crumb -->
@@ -36,9 +36,9 @@
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs profile-tab" role="tablist">
-                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#list" role="tab"><i class="fa fa-table"></i> Outlet List</a> </li>
+                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#list" role="tab"><i class="fa fa-table"></i> Daftar Outlet</a> </li>
                         @if(Auth::user()->staff_position < 6)
-                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#add" role="tab"><i class="fa fa-plus-square"></i> Add Outlet</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#add" role="tab"><i class="fa fa-plus-square"></i> Tambah Outlet</a> </li>
                         @endif
                     </ul>
 
@@ -53,12 +53,13 @@
                                                 @if(Auth::user()->staff_position < 6)
                                                 <th>Act</th>
                                                 @endif
-                                                <th>Outlet ID</th>
-                                                <th>Address</th>
-                                                <th>Telephone</th>
-                                                <th>Seat</th>
-                                                <th>Patnership</th>
-                                                <th>Owner</th>
+                                                <th>ID Outlet</th>
+                                                <th>Nama Outlet</th>
+                                                <th>Alamat</th>
+                                                <th>No. Telp.</th>
+                                                <th>Jumlah Kursi</th>
+                                                <th>Kemitraan</th>
+                                                <th>Pemilik</th>
                                                 
                                             </tr>
                                         </thead>
@@ -75,7 +76,8 @@
                                                 </td>
                                                 @endif
                                                 <td>{{ $outlet->outlet_id }}</td>
-                                                <td>{{ $outlet->address }}</td>
+                                                <td>{{ $outlet->name }}</td>
+                                                <td>{{ $outlet->address }}, {{ $outlet->districts->name }} <br> {{ $outlet->regencies->name }} {{ $outlet->provinces->name }}</td>
                                                 <td>{{ $outlet->telephone_number }}</td>
                                                 <td>{{ $outlet->total_barber_seat+$outlet->total_reflection_seat+$outlet->total_training_seat }}</td>
                                                 <td>{{ $outlet->partnership->title }}</td>
@@ -102,55 +104,97 @@
                                             <div class="form-validation">
                                                 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="outlet_id">Outlet ID <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="outlet_id">ID Outlet <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <input type="text" class="form-control input-sm" id="outlet_id" name="outlet_id" value="{{ $rand['outlet_id'] }}" readonly>
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="ID Outlet bersifat unik, dibuat oleh sistem">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="province">Province <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="name">Nama Outlet <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm" id="name" name="name">
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Nama outlet barber shop">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" for="province">Provinsi <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <select class="form-control input-sm" id="province" name="province" onchange="getRegency()">
-                                                            <option value="">Select Province</option>
+                                                            <option value="">Pilih Provinsi</option>
                                                             @foreach($provinces as $province)
                                                                 <option value="{{ $province->id }}">{{ ucwords($province->name) }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4" for="regency">Regency <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <select class="form-control input-sm" id="regency" name="regency" onchange="getDistrict()">
-                                                            <option value="">Select Regency</option>
-                                                            
-                                                        </select>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Provinsi lokasi outlet berada">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="district">District <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <select class="form-control input-sm" id="district" name="district">
-                                                            <option value="">Select District</option>
+                                                    <label class="col-lg-4" for="regency">Kabupaten/Kota <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <select class="form-control input-sm" id="regency" name="regency" onchange="getDistrict()">
+                                                            <option value="">Pilih Kabupaten/Kota</option>
                                                             
                                                         </select>
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Kabupaten/Kota lokasi outlet berada">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" for="district">Kecamatan <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <select class="form-control input-sm" id="district" name="district">
+                                                            <option value="">Pilih Kecamatan</option>
+                                                            
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Kecamatan lokasi outlet berada">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="address">Address <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="address">Alamat <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <input type="text" class="form-control input-sm" id="address" name="address">
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Alamat lokasi outlet berada">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="telephone_number">Telephone Number <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="telephone_number">No. Telepon <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <input type="text" class="form-control input-sm" id="telephone_number" name="telephone_number">
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Nomor line telepon outlet">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
@@ -164,47 +208,72 @@
                                             <div class="form-validation">
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="partner_id">Owner <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="partner_id">Pemilik/Investor <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <select class="form-control input-sm" id="partner_id" name="partner_id">
-                                                            <option value="">Select Owner</option>
+                                                            <option value="">Pilih Pemilik/Investor</option>
                                                             @foreach($partners as $partner)
                                                                 <option value="{{ $partner->id }}">{{ $partner->partner_id }} - {{ $partner->owner_name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Pemilik/Investor outlet">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="partnership_id">Partnership <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="partnership_id">Kemitraan <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <select class="form-control input-sm" id="partnership_id" name="partnership_id" onchange="partnershipChanged()">
-                                                            <option value="">Select Partnership</option>
+                                                            <option value="">Pilih Kemitraan</option>
                                                             @foreach($partnerships as $partnership)
                                                                 <option value="{{ $partnership->id }}"> {{ $partnership->title }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Jenis kemitraan outlet sesuai dengan yang tercantum pada PKS">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="total_barber_seat">Barber Seat <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="total_barber_seat">Kursi Potong <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <input type="number" class="form-control input-sm" id="total_barber_seat" name="total_barber_seat" value="0">
                                                     </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4" for="total_reflection_seat">Massage Seat <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="number" class="form-control input-sm" id="total_reflection_seat" name="total_reflection_seat" value="0">
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Jumlah kursi outlet yang digunakan untuk potong rambut">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="total_training_seat">Training Seat <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="total_reflection_seat">Kursi Pijat <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="number" class="form-control input-sm" id="total_reflection_seat" name="total_reflection_seat" value="0">
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Jumlah kursi outlet yang digunakan untuk pijat/refleksi">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" for="total_training_seat">Kursi Pelatihan <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <input type="number" class="form-control input-sm" id="total_training_seat" name="total_training_seat" value="0" readonly>
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Jumlah kursi outlet yang digunakan untuk pelatihan, hanya ada di kemitraan platinum">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
@@ -229,12 +298,12 @@
                                                                 <thead>
                                                                     <tr>
                                                                         <th rowspan="2" style="text-align:center; vertical-align: middle; width: 10%;">No</th>
-                                                                        <th rowspan="2" style="text-align:center; vertical-align: middle;">Service</th>
-                                                                        <th colspan="2" style="text-align:center; vertical-align: middle;">Price</th>
+                                                                        <th rowspan="2" style="text-align:center; vertical-align: middle;">Layanan</th>
+                                                                        <th colspan="2" style="text-align:center; vertical-align: middle;">Harga (Rp)</th>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th style="text-align:center; vertical-align: middle;">Adult</th>
-                                                                        <th style="text-align:center; vertical-align: middle;">Kid</th>
+                                                                        <th style="text-align:center; vertical-align: middle;">Dewasa</th>
+                                                                        <th style="text-align:center; vertical-align: middle;">Anak</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>

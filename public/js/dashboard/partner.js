@@ -68,48 +68,48 @@ var form_validation = function() {
                 },
                 messages: {
                     "partner_id": {
-                        required: "Please enter a partner ID",
-                        minlength: "Your Partner ID must consist of at least 8 characters"
+                        required: "Masukkan ID Partner",
+                        minlength: "ID Partner minimal harus terdiri dari 8 karakter"
                     },
                     "name": {
-                        required: "Please enter an owner name",
-                        minlength: "Your owner name must consist of at least 3 characters"
+                        required: "Masukkan nama pemilik",
+                        minlength: "Nama pemilik minimal harus terdiri dari 3 karakter"
                     },
                     "address": {
-                        required: "Please enter an owner address",
-                        minlength: "Your owner address must consist of at least 10 characters"
+                        required: "Masukkan nama pemilik",
+                        minlength: "Alamat pemilik minimal harus terdiri dari 3 karakter"
                     },
                     "id_card_number": {
-                        required: "Please enter an id card number",
-                        minlength: "Your id card number must consist of at least 8 characters"
+                        required: "Masukkan nomor identitas",
+                        minlength: "Nomor identitas pemilik minimal harus terdiri dari 3 karakter"
                     },
-                    "email": "Please enter a valid email address",
+                    "email": "Masukkan alamat email yang valid",
                     "password": {
-                        required: "Please provide a password",
-                        minlength: "Your password must be at least 8 characters long"
+                        required: "Masukkan password",
+                        minlength: "Password minimal harus terdiri dari 8 karakter"
                     },
                     "confirm_password": {
-                        required: "Please provide a password",
-                        minlength: "Your password must be at least 8 characters long",
+                        required: "Masukkan password kembali",
+                        minlength: "Password minimal harus terdiri dari 3 karakter",
                         equalTo: "Please enter the same password as above"
                     },
                     "pks_number": {
-                        required: "Please enter a pks number"
+                        required: "Masukkan nomor PKS"
                     },
                     "pks_date": {
-                        required: "Please enter a pks start date"
+                        required: "Masukkan tanggal PKS"
                     },
                     "pks_start_date": {
-                        required: "Please enter a pks start date"
+                        required: "Masukkan tanggal berlaku PKS"
                     },
                     "pks_end_date": {
-                        required: "Please enter a pks end date"
+                        required: "Masukkan tanggal berakhir PKS"
                     },
                     "investation": {
-                        required: "Please enter a investation"
+                        required: "Masukkan nilai investasi"
                     },
                     "pks_file": {
-                        required: "Please upload a pks file"
+                        required: "Upload hasil scan PKS, berupa file PDF"
                     }
                 }
             })

@@ -32,7 +32,7 @@
                     <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ empty(Auth::user()->photo)?asset('assets/profilephoto/default.png'):asset('assets/profilephoto/'.Auth::user()->photo)}}" alt="user" class="profile-pic" /></a>
                     <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                         <ul class="dropdown-user">
-                            <li><a href="{{ url('profile') }}"><i class="ti-user"></i> Edit Profile</a></li>
+                            <li><a href="{{ url('profile') }}"><i class="ti-user"></i> Profil</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ url('auth/logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>

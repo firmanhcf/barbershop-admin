@@ -21,7 +21,7 @@
     <!-- Bread crumb -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-primary">Employee</h4>
+            <h4 class="text-primary">Karyawan</h4>
         </div>
     </div>
     <!-- End Bread crumb -->
@@ -36,9 +36,9 @@
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs profile-tab" role="tablist">
-                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#list" role="tab"><i class="fa fa-table"></i> Employee List</a> </li>
-                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#list-caps" role="tab"><i class="fa fa-table"></i> Capster List</a> </li>
-                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#add" role="tab"><i class="fa fa-plus-square"></i> Add Employee/Capster</a> </li>
+                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#list" role="tab"><i class="fa fa-table"></i> Daftar Karyawan</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#list-caps" role="tab"><i class="fa fa-table"></i> Daftar Kapster/Terapis/Trainer</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#add" role="tab"><i class="fa fa-plus-square"></i> Tambah Karyawan/</a> </li>
                     </ul>
 
                     <div class="tab-content">
@@ -50,10 +50,10 @@
                                         <thead>
                                             <tr>
                                                 <th>Act</th>
-                                                <th>Emp ID</th>
-                                                <th>Name</th>
-                                                <th>Address</th>
-                                                <th>Position</th>
+                                                <th>ID Karyawan</th>
+                                                <th>Nama</th>
+                                                <th>Alamat</th>
+                                                <th>Posisi</th>
                                                 
                                             </tr>
                                         </thead>
@@ -88,9 +88,10 @@
                                         <thead>
                                             <tr>
                                                 <th>Act</th>
-                                                <th>Emp ID</th>
-                                                <th>Name</th>
-                                                <th>Address</th>
+                                                <th>ID Karyawan</th>
+                                                <th>Nama</th>
+                                                <th>Alamat</th>
+                                                <th>Posisi</th>
                                                 <th>Outlet</th>
                                                 
                                             </tr>
@@ -108,6 +109,7 @@
                                                 <td>{{ $capster->nik }}</td>
                                                 <td>{{ $capster->name }}</td>
                                                 <td>{{ $capster->address }}</td>
+                                                <td>{{ $pos[$capster->staff_position] }}</td>
                                                 <td>{{ $capster->outlet->outlet_id }}<br>{{ $capster->outlet->address }}</td>
                                             </tr>
                                             @endforeach
@@ -130,55 +132,85 @@
                                             <div class="form-validation">
                                                 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="nik">Employee ID <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="nik">ID Karyawan <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <input type="text" class="form-control input-sm" id="nik" name="nik" value="{{ $rand['emp_id'] }}" readonly>
                                                     </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4" for="name">Name <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm" id="name" name="name" placeholder="Type name...">
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="ID Karyawan bersifat unik, dibuat oleh sistem">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="province">Province <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="name">Nama <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm" id="name" name="name" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Nama Karyawan berdasarkan kartu identitas (KTP/SIM/Paspor)">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" for="province">Provinsi <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <select class="form-control input-sm" id="province" name="province" onchange="getRegency()">
-                                                            <option value="">Select Province</option>
+                                                            <option value="">Pilih Provinsi</option>
                                                             @foreach($provinces as $province)
                                                                 <option value="{{ $province->id }}">{{ ucwords($province->name) }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4" for="regency">Regency <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <select class="form-control input-sm" id="regency" name="regency" onchange="getDistrict()">
-                                                            <option value="">Select Regency</option>
-                                                            
-                                                        </select>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Provinsi sesuai dengan kartu identitas (KTP/SIM/Paspor)">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="district">District <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <select class="form-control input-sm" id="district" name="district">
-                                                            <option value="">Select District</option>
+                                                    <label class="col-lg-4" for="regency">Kabupaten/Kota <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <select class="form-control input-sm" id="regency" name="regency" onchange="getDistrict()">
+                                                            <option value="">Pilih Kabupaten/Kota</option>
                                                             
                                                         </select>
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Kabupaten/Kota sesuai dengan kartu identitas (KTP/SIM/Paspor)">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" for="district">Kecamatan <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <select class="form-control input-sm" id="district" name="district">
+                                                            <option value="">Pilih Kecamatan</option>
+                                                            
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Kecamatan sesuai dengan kartu identitas (KTP/SIM/Paspor)">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="address">Address <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm" id="address" name="address" placeholder="Type address...">
+                                                    <label class="col-lg-4" for="address">Alamat <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm" id="address" name="address">
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Alamat sesuai dengan kartu identitas (KTP/SIM/Paspor)">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
@@ -193,54 +225,84 @@
                                             <div class="form-validation">
 
                                                  <div class="form-group row">
-                                                    <label class="col-lg-4" for="birthdate">Birthdate <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm datepicker" id="birthdate" name="birthdate" placeholder="Choose birthdate...">
+                                                    <label class="col-lg-4" for="birthdate">Tanggal Lahir <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm datepicker" id="birthdate" name="birthdate">
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Tanggal lahir sesuai dengan kartu identitas (KTP/SIM/Paspor)">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="religion">Religion <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="religion">Agama <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <select class="form-control input-sm" id="religion" name="religion">
-                                                            <option value="">Select Religion</option>
+                                                            <option value="">Pilih Agama</option>
                                                             @foreach(config('app.religion') as $key => $religion)
                                                                 <option value="{{$key}}">{{$religion}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4" for="id_card_number">ID Card Number <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm" id="id_card_number" name="id_card_number" placeholder="Type ID card number...">
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Agama sesuai dengan kartu identitas (KTP/SIM/Paspor)">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="id_card_files">Scan ID Card <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="id_card_number">No Identitas <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm" id="id_card_number" name="id_card_number" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="No Identitas sesuai dengan kartu identitas (KTP/SIM/Paspor)">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" for="id_card_files">Scan Krt. Identitas <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <input name="id_card_files" class="form-control input-sm" id="id_card_files" type="file" />
                                                     </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="upload gambar scan kartu identitas (KTP/SIM/Paspor)">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="last_education">Last Education <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="last_education">Pend. Terakhir <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <select class="form-control input-sm" id="last_education" name="last_education">
-                                                            <option value="">Select Last Education</option>
+                                                            <option value="">Pilih Pendidikan Terakhir</option>
                                                             @foreach(config('app.last_education') as $key => $education)
                                                                 <option value="{{$key}}">{{$education}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Pilih jenjang pendidikan terakhir yang pernah dijalani">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="last_education_certificate">Last Education Certificate <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="last_education_certificate">Ijazah Terakhir <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <input name="last_education_certificate" class="form-control input-sm" id="last_education_certificate" type="file" />
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="upload file PDF hasil scan Ijazah pendidikan terakhir">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
@@ -259,22 +321,37 @@
 
                                                 <div class="form-group row">
                                                     <label class="col-lg-4" for="email">Email <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm" id="email" name="email" placeholder="Type email...">
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm" id="email" name="email" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="alamat email aktif, akan dipakai untuk login">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-lg-4" for="password">Password <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="password" class="form-control input-sm" id="password" name="password" placeholder="Type password...">
+                                                    <div class="col-lg-6">
+                                                        <input type="password" class="form-control input-sm" id="password" name="password" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Password minimal 8 karakter">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 
                                                 <div class="form-group row">
                                                     <label class="col-lg-4" for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="password" class="form-control input-sm" id="confirm_password" name="confirm_password" placeholder="Type password again...">
+                                                    <div class="col-lg-6">
+                                                        <input type="password" class="form-control input-sm" id="confirm_password" name="confirm_password" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Masukkan password yang sama dengan password di atas">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 
@@ -288,39 +365,51 @@
                                             <div class="form-validation">
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="staff_status">Employee Status <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="staff_status">Status Karyawan <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <select class="form-control input-sm" id="staff_status" name="staff_status">
-                                                            <option value="" >Select Employee Status</option>
+                                                            <option value="" >Pilih Status Karyawan</option>
                                                             @foreach(config('app.employee_status') as $key => $status)
                                                                 <option value="{{$key}}">{{$status}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
+                                                    <div class="col-lg-1">
+                                                        
+                                                    </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="staff_position">Employee Position <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="staff_position">Posisi Karyawan <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <select class="form-control input-sm" id="staff_position" name="staff_position" onchange="setOutlet()">
-                                                            <option value="">Select Employee Position</option>
+                                                            <option value="">Pilih Posisi Karyawan</option>
                                                             @foreach(config('app.employee_position') as $key => $position)
                                                                 <option value="{{$key}}">{{$position}}</option>
                                                             @endforeach
                                                         </select>
+
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-lg-4" for="outlet_id">Outlet <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <div class="col-lg-6">
                                                         <select class="form-control input-sm" id="outlet_id" name="outlet_id" readonly style="pointer-events: none;">
-                                                            <option value="">Select Outlet</option>
+                                                            <option value="">Pilih Outlet</option>
                                                             <option value="0" style="display:none;">Management</option>
                                                             @foreach($outlets as $outlet)
                                                                 <option value="{{ $outlet->id }}">{{ $outlet->outlet_id }} - {{ $outlet->address }}</option>
                                                             @endforeach
                                                         </select>
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Outlet hanya tersedia untuk supervisor dan kapster">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
@@ -340,23 +429,38 @@
                                             <div class="form-validation">
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="pks_number">PKS Number <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm" id="pks_number" name="pks_number" placeholder="Type pks number...">
+                                                    <label class="col-lg-4" for="pks_number">Nomor PKS <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm" id="pks_number" name="pks_number" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="No PKS yang tertera pada kontrak">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="salary">Salary <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm" id="salary" name="salary" placeholder="Type monthly salary...">
+                                                    <label class="col-lg-4" for="salary">Upah <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm" id="salary" name="salary" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Nominal upah karyawan bulanan">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="pks_file">PKS File <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="pks_file">Scan PKS <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <input name="pks_file" class="form-control input-sm" id="pks_file" type="file" />
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Upload scan file PKS berupa PDF">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
@@ -375,24 +479,39 @@
                                             <div class="form-validation">
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="pks_date">PKS Date <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm datepicker" id="pks_date" name="pks_date" placeholder="Choose pks date...">
+                                                    <label class="col-lg-4" for="pks_date">Tanggal PKS <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm datepicker" id="pks_date" name="pks_date">
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Tanggal pembuatan PKS">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="pks_start_date">PKS Start Date <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="pks_start_date">Berlaku pada <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <input type="text" class="form-control input-sm datepicker" id="pks_start_date" name="pks_start_date" placeholder="Choose pks start date...">
                                                     </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Tanggal mulai berlakunya PKS">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="pks_end_date">PKS End Date <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="pks_end_date">Berakhir pada <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <input type="text" class="form-control input-sm datepicker" id="pks_end_date" name="pks_end_date" placeholder="Choose pks end date...">
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Masa akhir berlakunya PKS">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 

@@ -36,8 +36,8 @@
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs profile-tab" role="tablist">
-                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#list" role="tab"><i class="fa fa-table"></i> Partner List</a> </li>
-                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#add" role="tab"><i class="fa fa-plus-square"></i> Add Partner</a> </li>
+                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#list" role="tab"><i class="fa fa-table"></i> Daftar Partner </a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#add" role="tab"><i class="fa fa-plus-square"></i> Tambah Partner</a> </li>
                     </ul>
 
                     <div class="tab-content">
@@ -49,10 +49,10 @@
                                         <thead>
                                             <tr>
                                                 <th>Act</th>
-                                                <th>Partner ID</th>
-                                                <th>Owner Name</th>
-                                                <th>Owner Address</th>
-                                                <th>Outlet</th>
+                                                <th>ID Partner</th>
+                                                <th>Nama Pemilik</th>
+                                                <th>Alamat Pemilik</th>
+                                                <th>Jumlah Outlet</th>
                                                 
                                             </tr>
                                         </thead>
@@ -92,29 +92,49 @@
                                                 
                                                     <div class="form-group row">
                                                         <label class="col-lg-4" for="partner_id">Partner ID <span class="text-danger">*</span></label>
-                                                        <div class="col-lg-7">
+                                                        <div class="col-lg-6">
                                                             <input type="text" class="form-control input-sm" id="partner_id" name="partner_id" value="{{ $rand['partner_id'] }}" readonly>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-4" for="name">Owner Name <span class="text-danger">*</span></label>
-                                                        <div class="col-lg-7">
-                                                            <input type="text" class="form-control input-sm" id="name" name="name" placeholder="Type owner name...">
+                                                        <div class="col-lg-1">
+                                                            <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="ID Partner bersifat unik, dibuat oleh sistem">
+                                                                <i class="fa fa-question-circle-o fa-lg"></i>
+                                                            </a>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label class="col-lg-4" for="address">Owner Address <span class="text-danger">*</span></label>
-                                                        <div class="col-lg-7">
-                                                            <input type="text" class="form-control input-sm" id="address" name="address" placeholder="Type owner address...">
+                                                        <label class="col-lg-4" for="name">Nama Pemilik <span class="text-danger">*</span></label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control input-sm" id="name" name="name" >
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Nama pemilik outlet sesuai dengan kartu identitas (KTP/SIM/Paspor)">
+                                                                <i class="fa fa-question-circle-o fa-lg"></i>
+                                                            </a>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label class="col-lg-4" for="id_card_number">ID Card Number <span class="text-danger">*</span></label>
-                                                        <div class="col-lg-7">
-                                                            <input type="text" class="form-control input-sm" id="id_card_number" name="id_card_number" placeholder="Type owner ID card number...">
+                                                        <label class="col-lg-4" for="address">Alamat Pemilik <span class="text-danger">*</span></label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control input-sm" id="address" name="address" >
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Alamat pemilik outlet sesuai dengan kartu identitas (KTP/SIM/Paspor)">
+                                                                <i class="fa fa-question-circle-o fa-lg"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4" for="id_card_number">No. Identitas <span class="text-danger">*</span></label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control input-sm" id="id_card_number" name="id_card_number">
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Nomor identitas pemilik outlet sesuai dengan kartu identitas (KTP/SIM/Paspor)">
+                                                                <i class="fa fa-question-circle-o fa-lg"></i>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                     
@@ -128,22 +148,37 @@
                                             <div class="form-validation">
                                                 <div class="form-group row">
                                                     <label class="col-lg-4" for="email">Email <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-8">
-                                                        <input type="text" class="form-control input-sm" id="email" name="email" placeholder="Type owner email...">
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm" id="email" name="email" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Alamat email aktif pemilik outlet, akan digunakan untuk login">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-lg-4" for="password">Password <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-8">
-                                                        <input type="password" class="form-control input-sm" id="password" name="password" placeholder="Type owner password...">
+                                                    <div class="col-lg-6">
+                                                        <input type="password" class="form-control input-sm" id="password" name="password">
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Password minimal terdiri dari 8 karakter">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 
                                                 <div class="form-group row">
                                                     <label class="col-lg-4" for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-8">
-                                                        <input type="password" class="form-control input-sm" id="confirm_password" name="confirm_password" placeholder="Type owner password again...">
+                                                    <div class="col-lg-6">
+                                                        <input type="password" class="form-control input-sm" id="confirm_password" name="confirm_password" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Password minimal terdiri dari 8 karakter dan harus sama dengan password di atas">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
@@ -161,23 +196,38 @@
                                             <div class="form-validation">
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="pks_number">PKS Number <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm" id="pks_number" name="pks_number" placeholder="Type pks number...">
+                                                    <label class="col-lg-4" for="pks_number">Nomor PKS <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm" id="pks_number" name="pks_number" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Nomor PKS yang tertera pada kontrak">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="investation">Investation <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm" id="investation" name="investation" placeholder="Type venture capital of owner...">
+                                                    <label class="col-lg-4" for="investation">Investasi <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm" id="investation" name="investation" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Investasi partner yang tertera pada kontrak">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="pks_file">PKS File <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="pks_file">File PKS <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
                                                         <input name="pks_file" class="form-control input-sm" id="pks_file" type="file" />
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Upload scan file PKS berupa PDF">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
@@ -196,24 +246,39 @@
                                             <div class="form-validation">
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="pks_date">PKS Date <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm datepicker" id="pks_date" name="pks_date" placeholder="Choose pks date...">
+                                                    <label class="col-lg-4" for="pks_date">Tanggal PKS <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm datepicker" id="pks_date" name="pks_date" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Tanggal pembuatan PKS">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="pks_start_date">PKS Start Date <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm datepicker" id="pks_start_date" name="pks_start_date" placeholder="Choose pks start date...">
+                                                    <label class="col-lg-4" for="pks_start_date">Berlaku dari <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm datepicker" id="pks_start_date" name="pks_start_date" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Tanggal mulai berlakunya PKS">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="pks_end_date">PKS End Date <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm datepicker" id="pks_end_date" name="pks_end_date" placeholder="Choose pks end date...">
+                                                    <label class="col-lg-4" for="pks_end_date">Berlaku hingga <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm datepicker" id="pks_end_date" name="pks_end_date" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Masa akhir berlakunya PKS">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 

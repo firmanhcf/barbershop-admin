@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Edit Outlet')
+@section('title', 'Edit Data Partner')
 
 @section('navbar')
     @include('partials.navbar')
@@ -20,7 +20,7 @@
     <!-- Bread crumb -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-primary">Edit Outlet</h4>
+            <h4 class="text-primary">Edit Data Partner</h4>
         </div>
     </div>
     <!-- End Bread crumb -->
@@ -40,30 +40,50 @@
                                     <div class="form-validation">
                                         
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="partner_id">Partner ID <span class="text-danger">*</span></label>
-                                            <div class="col-lg-7">
+                                            <label class="col-lg-4" for="partner_id">ID Partner <span class="text-danger">*</span></label>
+                                            <div class="col-lg-6">
                                                 <input type="text" class="form-control input-sm" id="partner_id" name="partner_id" value="{{ $partner->partner_id }}" readonly>
                                             </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-lg-4" for="name">Owner Name <span class="text-danger">*</span></label>
-                                            <div class="col-lg-7">
-                                                <input type="text" class="form-control input-sm" id="name" name="name" placeholder="Type owner name..." value="{{ $partner->owner_name }}">
+                                            <div class="col-lg-1">
+                                                <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="ID Partner bersifat unik, dibuat oleh sistem">
+                                                    <i class="fa fa-question-circle-o fa-lg"></i>
+                                                </a>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="address">Owner Address <span class="text-danger">*</span></label>
-                                            <div class="col-lg-7">
-                                                <input type="text" class="form-control input-sm" id="address" name="address" placeholder="Type owner address..." value="{{ $partner->owner_address }}">
+                                            <label class="col-lg-4" for="name">Nama Pemilik <span class="text-danger">*</span></label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control input-sm" id="name" name="name" value="{{ $partner->owner_name }}">
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Nama pemilik outlet sesuai dengan kartu identitas (KTP/SIM/Paspor)">
+                                                    <i class="fa fa-question-circle-o fa-lg"></i>
+                                                </a>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="id_card_number">ID Card Number <span class="text-danger">*</span></label>
-                                            <div class="col-lg-7">
-                                                <input type="text" class="form-control input-sm" id="id_card_number" name="id_card_number" placeholder="Type owner ID card number..." value="{{ $partner->owner_id_card_number }}">
+                                            <label class="col-lg-4" for="address">Alamat Pemilik <span class="text-danger">*</span></label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control input-sm" id="address" name="address" value="{{ $partner->owner_address }}">
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Alamat pemilik outlet sesuai dengan kartu identitas (KTP/SIM/Paspor)">
+                                                    <i class="fa fa-question-circle-o fa-lg"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-lg-4" for="id_card_number">No. Identitas <span class="text-danger">*</span></label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control input-sm" id="id_card_number" name="id_card_number" value="{{ $partner->owner_id_card_number }}">
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Nomor identitas pemilik outlet sesuai dengan kartu identitas (KTP/SIM/Paspor)">
+                                                    <i class="fa fa-question-circle-o fa-lg"></i>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -74,45 +94,76 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="pks_number">PKS Number <span class="text-danger">*</span></label>
-                                            <div class="col-lg-7">
-                                                <input type="text" class="form-control input-sm" id="pks_number" name="pks_number" placeholder="Type pks number..." value="{{ $pks->pks_number }}">
+                                            <label class="col-lg-4" for="pks_number">Nomor PKS <span class="text-danger">*</span></label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control input-sm" id="pks_number" name="pks_number" value="{{ $pks->pks_number }}">
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Nomor PKS yang tertera pada kontrak">
+                                                    <i class="fa fa-question-circle-o fa-lg"></i>
+                                                </a>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-lg-4" for="investation">Investasi <span class="text-danger">*</span></label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control input-sm" id="investation" name="investation" value="{{ $pks->investation }}">
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Investasi partner yang tertera pada kontrak">
+                                                    <i class="fa fa-question-circle-o fa-lg"></i>
+                                                </a>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="investation">Investation <span class="text-danger">*</span></label>
-                                            <div class="col-lg-7">
-                                                <input type="text" class="form-control input-sm" id="investation" name="investation" placeholder="Type venture capital of owner..." value="{{ $pks->investation }}">
+                                            <label class="col-lg-4" for="pks_date">Tanggal PKS <span class="text-danger">*</span></label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control input-sm datepicker" id="pks_date" name="pks_date" value="{{ $pks->pks_date }}">
                                             </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-lg-4" for="pks_date">PKS Date <span class="text-danger">*</span></label>
-                                            <div class="col-lg-7">
-                                                <input type="text" class="form-control input-sm datepicker" id="pks_date" name="pks_date" placeholder="Choose pks date..." value="{{ $pks->pks_date }}">
+                                            <div class="col-lg-1">
+                                                <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Tanggal pembuatan PKS">
+                                                    <i class="fa fa-question-circle-o fa-lg"></i>
+                                                </a>
                                             </div>
                                         </div>
 
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="pks_start_date">PKS Start Date <span class="text-danger">*</span></label>
-                                            <div class="col-lg-7">
+                                            <label class="col-lg-4" for="pks_start_date">Berlaku dari <span class="text-danger">*</span></label>
+                                            <div class="col-lg-6">
                                                 <input type="text" class="form-control input-sm datepicker" id="pks_start_date" name="pks_start_date" placeholder="Choose pks start date..." value="{{ $pks->pks_start_date }}">
                                             </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-lg-4" for="pks_end_date">PKS End Date <span class="text-danger">*</span></label>
-                                            <div class="col-lg-7">
-                                                <input type="text" class="form-control input-sm datepicker" id="pks_end_date" name="pks_end_date" placeholder="Choose pks end date..." value="{{ $pks->pks_end_date }}">
+                                            <div class="col-lg-1">
+                                                <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Tanggal mulai berlakunya PKS">
+                                                    <i class="fa fa-question-circle-o fa-lg"></i>
+                                                </a>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="pks_file">Change PKS File <span class="text-danger"></span></label>
-                                            <div class="col-lg-7">
+                                            <label class="col-lg-4" for="pks_end_date">Berlaku hingga <span class="text-danger">*</span></label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control input-sm datepicker" id="pks_end_date" name="pks_end_date" placeholder="Choose pks end date..." value="{{ $pks->pks_end_date }}">
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Masa akhir berlakunya PKS">
+                                                    <i class="fa fa-question-circle-o fa-lg"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-lg-4" for="pks_file">Ganti File PKS <span class="text-danger"></span></label>
+                                            <div class="col-lg-6">
                                                 <input name="pks_file" class="form-control input-sm" id="pks_file" type="file" />
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Upload scan file PKS berupa PDF">
+                                                    <i class="fa fa-question-circle-o fa-lg"></i>
+                                                </a>
                                             </div>
                                         </div>
 

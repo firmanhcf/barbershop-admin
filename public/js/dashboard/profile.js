@@ -35,7 +35,7 @@ function getRegency(){
     $.get(APP_URL+"/config/regency/"+$('#province').val(), function(res, status) {
         $('#regency').html("");
 
-        var strOpt = '<option value="">Select Regency</option>';
+        var strOpt = '<option value="">Pilih Kabupaten/Kota</option>';
         for (var i = 0; i < res.length; i++) {
             strOpt += '<option value="'+res[i].id+'">'+res[i].name+'</option>';
         }
@@ -49,7 +49,7 @@ function getDistrict(){
     $.get(APP_URL+"/config/district/"+$('#regency').val(), function(res, status) {
         $('#district').html("");
 
-        var strOpt = '<option value="">Select District</option>';
+        var strOpt = '<option value="">Pilih Kecamatan</option>';
         for (var i = 0; i < res.length; i++) {
             strOpt += '<option value="'+res[i].id+'">'+res[i].name+'</option>';
         }
@@ -89,16 +89,16 @@ var form_validation = function() {
                 },
                 messages: {
                     "current_password": {
-                        required: "Please enter your current password"
+                        required: "Silakan masukkan password lama"
                     },
                     "new_password": {
-                        required: "Please provide a new password",
-                        minlength: "Your password must be at least 8 characters long"
+                        required: "Silakan masukkan password baru",
+                        minlength: "Password baru minimal terdiri dari 8 karakter"
                     },
                     "confirm_password": {
-                        required: "Please provide a new password",
-                        minlength: "Your password must be at least 8 characters long",
-                        equalTo: "Please enter the same password as above"
+                        required: "Silakan ketik ulang password baru",
+                        minlength: "Password baru minimal terdiri dari 8 karakter",
+                        equalTo: "Password tidak sama dengan password di atas"
                     }
                 }
             })

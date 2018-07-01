@@ -4,6 +4,9 @@
 <!-- Bootstrap tether Core JavaScript -->
 <script src="{{ asset('js/lib/bootstrap/js/popper.min.js') }}"></script>
 <script src="{{ asset('js/lib/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/lib/moment/moment.js') }}"></script>
+<script src="{{ asset('js/lib/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+
 <!-- slimscrollbar scrollbar JavaScript -->
 <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
 <!--Menu sidebar -->

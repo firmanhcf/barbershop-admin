@@ -25,7 +25,7 @@ function getRegency(){
     $.get(APP_URL+"/config/regency/"+$('#province').val(), function(res, status) {
         $('#regency').html("");
 
-        var strOpt = '<option value="">Select Regency</option>';
+        var strOpt = '<option value="">Pilih Kabupaten/Kota</option>';
         for (var i = 0; i < res.length; i++) {
             strOpt += '<option value="'+res[i].id+'">'+res[i].name+'</option>';
         }
@@ -39,7 +39,7 @@ function getDistrict(){
     $.get(APP_URL+"/config/district/"+$('#regency').val(), function(res, status) {
         $('#district').html("");
 
-        var strOpt = '<option value="">Select District</option>';
+        var strOpt = '<option value="">Pilih Kecamatan</option>';
         for (var i = 0; i < res.length; i++) {
             strOpt += '<option value="'+res[i].id+'">'+res[i].name+'</option>';
         }
@@ -72,6 +72,9 @@ var form_validation = function() {
                     "outlet_id": {
                         required: !0,
                         minlength: 8
+                    },
+                    "name": {
+                        required: !0
                     },
                     "province": {
                         required: !0
@@ -111,44 +114,47 @@ var form_validation = function() {
                     
                 },
                 messages: {
-                    "partner_id": {
-                        required: "Please enter a partner ID",
-                        minlength: "Your Partner ID must consist of at least 8 characters"
+                    "outlet_id": {
+                        required: "Masukkan ID outlet",
+                        minlength: "ID Outlet minimal terdiri dari 8 karakter"
+                    },
+                    "name": {
+                        required: "Masukkan nama outlet barber shop"
                     },
                     "province": {
-                        required: "Please select a province"
+                        required: "Silakan pilih provinsi"
                     },
                     "regency": {
-                        required: "Please select a regency"
+                        required: "Silakan pilih kabupaten/kota"
                     },
                     "district": {
-                        required: "Please select a district"
+                        required: "Silakan pilih kecamatan"
                     },
                     "address": {
-                        required: "Please enter an owner address",
-                        minlength: "Your owner address must consist of at least 10 characters"
+                        required: "Masukkan alamat outlet",
+                        minlength: "Alamat Outlet minimal terdiri dari 10 karakter"
                     },
                     "telephone_number": {
-                        required: "Please enter a telephone number",
-                        number: "Your telephone number must be a number"
+                        required: "Masukkan nomor telepon outlet",
+                        number: "Nomor telepon harus berupa nomor"
                     },
                     "partner_id": {
-                        required: "Please select an owner"
+                        required: "Silakan pilih pemilik/investor"
                     },
                     "partnership_id": {
-                        required: "Please select a partnership schema"
+                        required: "Silakan pilih kemitraan"
                     },
                     "total_barber_seat": {
-                        required: "Please enter barber seat on outlet",
-                        number: "Total seat must be a number"
+                        required: "Masukkan jumlah kursi potong",
+                        number: "Jumlah kursi potong harus berupa nomor"
                     },
-                    "total_refelction_seat": {
-                        required: "Please enter massage seat on outlet",
-                        number: "Total seat must be a number"
+                    "total_reflection_seat": {
+                        required: "Masukkan jumlah kursi pijat",
+                        number: "Jumlah kursi pijat harus berupa nomor"
                     },
                     "total_training_seat": {
-                        required: "Please enter training seat on outlet",
-                        number: "Total seat must be a number"
+                        required: "Masukkan jumlah kursi pelatihan",
+                        number: "Jumlah kursi pelatihan harus berupa nomor"
                     }
                 }
             })

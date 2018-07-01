@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Main Dashboard')
+@section('title', 'Dashboard Utama')
 
 @section('navbar')
     @include('partials.navbar')
@@ -39,7 +39,7 @@
                         </div>
                         <div class="media-body media-text-right">
                             <h2 class="color-white">Rp. {{ empty($revenueToday[0]->after_discount)?'0':number_format($revenueToday[0]->after_discount,2,",",".") }}</h2>
-                            <p class="m-b-0">of {{ number_format($transactionToday,0,",",".") }} transaction(s) today</p>
+                            <p class="m-b-0">dari {{ number_format($transactionToday,0,",",".") }} transaksi hari ini</p>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="media-body media-text-right">
                             <h2 class="color-white">Rp. {{ empty($revenueThisMonth[0]->after_discount)?'0':number_format($revenueThisMonth[0]->after_discount,2,",",".") }}</h2>
-                            <p class="m-b-0">of {{ number_format($transactionThisMonth,0,",",".") }} transaction(s) this month</p>
+                            <p class="m-b-0">dari {{ number_format($transactionThisMonth,0,",",".") }} transaksi bulan ini</p>
                         </div>
                     </div>
                 </div>
@@ -64,12 +64,12 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-title">
-                        <h4>Transactions</h4>
+                        <h4>Transaksi</h4>
                     </div>
                     
                     <ul class="nav nav-tabs profile-tab" role="tablist">
-                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#today" role="tab"><i class="fa fa-table"></i> Today</a> </li>
-                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#month" role="tab"><i class="fa fa-table"></i> This Month</a> </li>
+                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#today" role="tab"><i class="fa fa-table"></i> Hari ini</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#month" role="tab"><i class="fa fa-table"></i> Bulan ini</a> </li>
                     </ul>
 
                     <div class="tab-content">
@@ -80,12 +80,12 @@
                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>Date</th>
-                                                <th>Province</th>
+                                                <th>Tanggal</th>
+                                                <th>Provinsi</th>
                                                 <th>Outlet</th>
-                                                <th>Capster</th>
-                                                <th>Customer Name</th>
-                                                <th>Discount (%)</th>
+                                                <th>Kapster</th>
+                                                <th>Nama Pelanggan</th>
+                                                <th>Diskon (%)</th>
                                                 <th>Total (Rp)</th>
                                                 
                                             </tr>
@@ -128,12 +128,12 @@
                                     <table id="example24" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>Date</th>
-                                                <th>Province</th>
+                                                <th>Tanggal</th>
+                                                <th>Provinsi</th>
                                                 <th>Outlet</th>
-                                                <th>Capster</th>
-                                                <th>Customer Name</th>
-                                                <th>Discount (%)</th>
+                                                <th>Kapster</th>
+                                                <th>Nama Pelanggan</th>
+                                                <th>Diskon (%)</th>
                                                 <th>Total (Rp)</th>
                                             </tr>
                                         </thead>

@@ -10,8 +10,8 @@
 @endsection
 
 @section('addStyle')
-<link href="{{ asset('css/lib/dropzone/dropzone.css') }}" rel="stylesheet">
 <link href="{{ asset('css/lib/datepicker/bootstrap-datepicker3.min.css') }}" rel="stylesheet">
+<link href="{{ asset('js/lib/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/lib/sweetalert/sweetalert.css') }}" rel="stylesheet">
 @endsection
 
@@ -37,9 +37,9 @@
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs profile-tab" role="tablist">
-                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#list" role="tab"><i class="fa fa-table"></i> Transaction List</a> </li>
+                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#list" role="tab"><i class="fa fa-table"></i> Daftar Transaksi</a> </li>
                         @if(Auth::user()->staff_position <= 6)
-                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#add" role="tab"><i class="fa fa-plus-square"></i> Add Transaction</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#add" role="tab"><i class="fa fa-plus-square"></i> Tambah Transaksi</a> </li>
                         @endif
                     </ul>
 
@@ -51,14 +51,13 @@
                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                @if(Auth::user()->staff_position == 6)
+                                                @if(Auth::user()->staff_position == 6 || Auth::user()->staff_position == 0)
                                                 <th>Act</th>
                                                 @endif
                                                 <th>Invoice</th>
                                                 <th>Outlet</th>
-                                                <th>Capster</th>
-                                                <th>Customer Name</th>
-                                                <th>Date</th>
+                                                <th>Nama Pelanggan</th>
+                                                <th>Tanggal</th>
                                                 <th>Total (Rp)</th>
                                                 
                                             </tr>
@@ -66,7 +65,7 @@
                                         <tbody>
                                             @foreach($transactions as $transaction)
                                                 <tr>
-                                                    @if(Auth::user()->staff_position == 6)
+                                                    @if(Auth::user()->staff_position == 6 || Auth::user()->staff_position == 0)
                                                     <td>
                                                         <div class="sweetalert">
                                                             <button type="button" class="btn btn-default btn-xs" onclick="showSweetAlert('transaction','{{ $transaction->id }}')"><i class="fa fa-times"></i></button>
@@ -82,7 +81,6 @@
                                                         <br>
                                                         {{ $transaction->outlet->regencies->name }}
                                                     </td>
-                                                    <td>{{ $transaction -> capster -> name }}</td>
                                                     <td>{{ $transaction -> customer -> name }}</td>
                                                     <td>
                                                         {{ date_format($transaction -> created_at,"d-M-y") }}
@@ -113,16 +111,21 @@
                                                 
                                                 <div class="form-group row">
                                                     <label class="col-lg-4" for="invoice_num">Invoice <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <div class="col-lg-6">
                                                         <input type="text" class="form-control input-sm" id="invoice_num" name="invoice_num" value="{{ $rand['invoice_num'] }}" readonly>
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Nomor invoice bersifat unik, dibuat oleh sistem">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-lg-4" for="outlet_id">Outlet <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
+                                                    <div class="col-lg-6">
                                                         <select class="form-control input-sm" id="outlet_id" name="outlet_id" onchange="getOutletInfo()">
-                                                            <option value="">Select Outlet</option>
+                                                            <option value="">Pilih Outlet</option>
                                                             @foreach($outlets as $outlet)
                                                                 <option value="{{ $outlet->id }}">{{ $outlet->outlet_id }} - {{ $outlet->address }}</option>
                                                             @endforeach
@@ -131,25 +134,32 @@
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="capster_id">Capster <span class="text-danger">*</span></label>
-                                                    <div class="col-lg-7">
-                                                        <select class="form-control input-sm" id="capster_id" name="capster_id">
-                                                            <option value="">Select Capster</option>
-                                                           
-                                                        </select>
+                                                    <label class="col-lg-4" for="transaction_datetime">Tgl, Waktu Transaksi<span class="text-danger"></span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm datetimepicker" id="transaction_datetime" name="transaction_datetime" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Tanggal dan jam transaksi berlangsung">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="master_discount">Master Discount (%)<span class="text-danger"></span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="master_discount">Master Diskon (%)<span class="text-danger"></span></label>
+                                                    <div class="col-lg-6">
                                                         <input type="number" class="form-control input-sm" id="master_discount" name="master_discount" value="0" onkeyup="masterDiscount()">
                                                     </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Diskon secara keseluruhan transaksi">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="total_payment">Total Payment<span class="text-danger"></span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="total_payment">Total Pembayaran<span class="text-danger"></span></label>
+                                                    <div class="col-lg-6">
                                                         <input type="number" class="form-control input-sm" id="total_payment" name="total_payment" value="0" readonly>
                                                     </div>
                                                 </div>
@@ -170,37 +180,62 @@
                                             <div class="form-validation">
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="customer_id">Customer ID<span class="text-danger"></span></label>
-                                                    <div class="col-lg-7">
+                                                    <label class="col-lg-4" for="customer_id">ID Pelanggan<span class="text-danger"></span></label>
+                                                    <div class="col-lg-6">
                                                         <input type="text" class="form-control input-sm" id="customer_id" name="customer_id" value="{{ $rand['customer_id'] }}" readonly>
                                                     </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4" for="customer_name">Customer Name<span class="text-danger"></span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm" id="customer_name" name="customer_name" placeholder="Type customer name...">
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="ID pelanggan bersifat unik, dibuat oleh sistem">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="customer_job">Customer Job<span class="text-danger"></span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm" id="customer_job" name="customer_job" placeholder="Type customer Job...">
+                                                    <label class="col-lg-4" for="customer_name">Nama Pelanggan<span class="text-danger"></span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm" id="customer_name" name="customer_name" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Nama pelanggan sesuai kartu identitas">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="customer_address">Customer Address<span class="text-danger"></span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm" id="customer_address" name="customer_address" placeholder="Type customer address...">
+                                                    <label class="col-lg-4" for="customer_birthdate">Tgl. Lahir Pelanggan<span class="text-danger"></span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm datepicker" id="customer_birthdate" name="customer_birthdate" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Tanggal lahir pelanggan sesuai kartu identitas">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4" for="customer_phone_number">Customer Phone Number<span class="text-danger"></span></label>
-                                                    <div class="col-lg-7">
-                                                        <input type="text" class="form-control input-sm" id="customer_phone_number" name="customer_phone_number" placeholder="Type customer phone number..." >
+                                                    <label class="col-lg-4" for="customer_address">Alamat Pelanggan<span class="text-danger"></span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm" id="customer_address" name="customer_address" ">
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Alamat pelanggan sesuai kartu identitas">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" for="customer_phone_number">No. Telp. Pelanggan<span class="text-danger"></span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm" id="customer_phone_number" name="customer_phone_number" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Nomor telepon pelanggan">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
@@ -223,11 +258,13 @@
                                                                 <thead>
                                                                     <tr>
                                                                         <th>No</th>
-                                                                        <th>Service</th>
-                                                                        <th>Price</th>
+                                                                        <th>Layanan</th>
+                                                                        <th>Kapster/Terapis/Trainer</th>
+                                                                        <th>Harga</th>
                                                                         <th>Qty</th>
-                                                                        <th>Discount (%)</th>
+                                                                        <th>Diskon Tiap Layanan (%)</th>
                                                                         <th>Subtotal</th>
+                                                                        
                                                                         <th>Act</th>
                                                                     </tr>
                                                                 </thead>
@@ -236,7 +273,12 @@
                                                                         <td id="row_num_1">1</td>
                                                                         <td id="service_num_1">
                                                                             <select class="form-control input-sm" name="service_1" id="service_1" onchange="getPrice(1)">
-                                                                                <option value="">Select Service</option>
+                                                                                <option value="">Pilih Layanan</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td id="capster_num_1">
+                                                                            <select class="form-control input-sm" name="capster_1" id="capster_1">
+                                                                                <option value="">Pilih Kapster/Terapis/Trainer</option>
                                                                             </select>
                                                                         </td>
                                                                         <td id="price_num_1">
@@ -251,6 +293,7 @@
                                                                         <td id="subtotal_num_1">
                                                                             <input type="text" class="form-control input-sm" id="subtotal_1" name="subtotal_1" value="0" readonly>
                                                                         </td>
+                                                                        
                                                                         <td id="remove_num_1">
                                                                             <button id="remove_1" type="button" class="btn btn-xs btn-danger" onclick="removeRow(1)"><i class="fa fa-times" ></i></button>
                                                                         </td>
@@ -263,7 +306,7 @@
 
                                                 <div class="form-group row">
                                                     <div class="col-lg-2 ml-auto">
-                                                        <button type="button" class="btn btn-primary m-t-15" onclick="addRow()">Add Row</button>
+                                                        <button type="button" class="btn btn-primary m-t-15" onclick="addRow()">Tambah Baris</button>
                                                     </div>
                                                 </div>
 
@@ -299,6 +342,7 @@
 <script type="text/javascript">
 var APP_URL = {!! json_encode(url('/')) !!};
 var PRICES = [] ;
+var CUSTSERV = [];
 var TRANDETROW = 1 ;
 </script>
 

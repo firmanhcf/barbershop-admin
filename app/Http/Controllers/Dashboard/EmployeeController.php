@@ -26,7 +26,7 @@ class EmployeeController extends Controller
     	$provinces = Province::all();
     	$outlets = Outlet::all();
     	$employees = Employee::whereIn('staff_position', ['1','2','3','4','5','6'])->get();
-    	$capsters = Employee::where('staff_position', '8')->get();
+    	$capsters = Employee::whereIn('staff_position', ['8', '9', '10'])->get();
     	$now = Carbon::today();
     	$rand = array("emp_id" => "EMP".$now->year."".substr("".time(), (strlen("".time())-6), 6));
     	$pos=config('app.employee_position');
@@ -95,13 +95,13 @@ class EmployeeController extends Controller
 
 				return redirect()
 				->back()
-				->with('success', 'New Partner has been saved.');
+				->with('success', 'Data Karyawan telah berhasil disimpan.');
 			}
 			else{
 				return redirect()
 				->back()
 				->withErrors([
-					'err_msg' => 'Failed to save PKS for new partner, please contact administrator.',
+					'err_msg' => 'Gagal menyimpan PKS, hubungi administrator untuk info lebih lanjut.',
 				]);
 			}
 
@@ -110,7 +110,7 @@ class EmployeeController extends Controller
     		return redirect()
 				->back()
 				->withErrors([
-					'err_msg' => 'Failed to create new employee, please contact administrator.',
+					'err_msg' => 'Gagal menyimpan data karyawan, hubungi administrator untuk info lebih lanjut.',
 				]);
     	}
 
@@ -124,13 +124,13 @@ class EmployeeController extends Controller
     	if ($employee->trashed()) {
 		    return redirect()
 				->back()
-				->with('success', 'Employee Data has been deleted.');
+				->with('success', 'Data karyawan telah dihapus.');
 		}
 		else{
 			return redirect()
 				->back()
 				->withErrors([
-					'err_msg' => 'Failed to delete employee, please contact administrator.',
+					'err_msg' => 'Gagal menghapus data karyawan, hubungi administrator untuk info lebih lanjut.',
 				]);
 		}
     	
@@ -226,23 +226,23 @@ class EmployeeController extends Controller
 
 				return redirect()
 				->back()
-				->with('success', 'Employee Data has been updated.');
+				->with('success', 'Data karyawan berhasil diupdate.');
 			}
 			else{
 				return redirect()
-				->back()
-				->withErrors([
-					'err_msg' => 'Failed to save PKS for Employee, please contact administrator.',
-				]);
+                ->back()
+                ->withErrors([
+                    'err_msg' => 'Gagal menyimpan PKS, hubungi administrator untuk info lebih lanjut.',
+                ]);
 			}
 
     	}
     	else{
     		return redirect()
-				->back()
-				->withErrors([
-					'err_msg' => 'Failed to update employee data, please contact administrator.',
-				]);
+                ->back()
+                ->withErrors([
+                    'err_msg' => 'Gagal menyimpan data karyawan, hubungi administrator untuk info lebih lanjut.',
+                ]);
     	}
     }
 

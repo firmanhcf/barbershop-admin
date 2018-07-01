@@ -55,12 +55,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('employee/edit/{id}', 'Dashboard\EmployeeController@editEmployee');
     Route::post('employee/delete/{id}', 'Dashboard\EmployeeController@deleteEmployee');
 
-    //# Employee
-    Route::get('employee', 'Dashboard\EmployeeController@showEmployeeDashboard');
-    Route::get('employee/edit/{id}', 'Dashboard\EmployeeController@showEditEmployee');
-    Route::post('employee/input', 'Dashboard\EmployeeController@inputNewEmployee');
-    Route::post('employee/edit/{id}', 'Dashboard\EmployeeController@editEmployee');
-    Route::post('employee/delete/{id}', 'Dashboard\EmployeeController@deleteEmployee');
+    //# Asset
+    Route::get('asset', 'Dashboard\AssetController@showAssetDashboard');
+    Route::get('asset/edit/{id}', 'Dashboard\AssetController@showEditAsset');
+    Route::post('asset/input', 'Dashboard\AssetController@inputNewAsset');
+    Route::post('asset/edit/{id}', 'Dashboard\AssetController@editAsset');
+    Route::post('asset/delete/{id}', 'Dashboard\AssetController@deleteAsset');
+
+    //# Asset
+    Route::get('operational', 'Dashboard\OperationalController@showOperationalDashboard');
+    Route::get('operational/edit/{id}', 'Dashboard\OperationalController@showEditOperational');
+    Route::post('operational/input', 'Dashboard\OperationalController@inputNewOperational');
+    Route::post('operational/edit/{id}', 'Dashboard\OperationalController@editOperational');
+    Route::post('operational/delete/{id}', 'Dashboard\OperationalController@deleteOperational');
 
     //# Profile
     Route::get('profile', 'Dashboard\ProfileController@showProfile');
@@ -71,6 +78,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('account', 'Admin\AccountController@showAccount');
     Route::post('account/activation/{id}/{status}', 'Admin\AccountController@accountActivation');
 
-    //# Search Invoice
+
 });
 

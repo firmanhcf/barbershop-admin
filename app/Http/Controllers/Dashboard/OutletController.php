@@ -39,6 +39,7 @@ class OutletController extends Controller
 
     	$outlet = new Outlet();
     	$outlet -> outlet_id = $request -> outlet_id;
+        $outlet -> name = $request -> name;
     	$outlet -> province = $request -> province;
     	$outlet -> regency = $request -> regency;
     	$outlet -> district = $request -> district;
@@ -73,13 +74,13 @@ class OutletController extends Controller
 
 			return redirect()
 			->back()
-			->with('success', 'New outlet has been saved.');
+			->with('success', 'Data outlet telah disimpan.');
 		}
 		else{
 			return redirect()
 			->back()
 			->withErrors([
-				'err_msg' => 'Failed to save outlet, please contact administrator.',
+				'err_msg' => 'Gagal menyimpan data outlet, hubungi administrator untuk info lebih lanjut.',
 			]);
 		}
 
@@ -107,6 +108,7 @@ class OutletController extends Controller
     public function editOutlet(Request $request, $id){
 
     	$outlet = Outlet::findOrFail($id);
+        $outlet -> name = $request -> name;
     	$outlet -> province = $request -> province;
     	$outlet -> regency = $request -> regency;
     	$outlet -> district = $request -> district;
@@ -143,13 +145,13 @@ class OutletController extends Controller
 
 			return redirect()
 			->back()
-			->with('success', 'Outlet has been updated.');
+			->with('success', 'Data Outlet telah diperbarui');
 		}
 		else{
 			return redirect()
 			->back()
 			->withErrors([
-				'err_msg' => 'Failed to update outlet, please contact administrator.',
+				'err_msg' => 'Gagal memperbarui data outlet, hubungi administrator untuk info lebih lanjut',
 			]);
 		}
 
@@ -163,13 +165,13 @@ class OutletController extends Controller
     	if ($outlet->trashed()) {
 		    return redirect()
 				->back()
-				->with('success', 'Outlet Data has been deleted.');
+				->with('success', 'Data outlet telah dihapus');
 		}
 		else{
 			return redirect()
 				->back()
 				->withErrors([
-					'err_msg' => 'Failed to delete outlet, please contact administrator.',
+					'err_msg' => 'Gagal menghapus data outlet, hubungi administrator untuk info lebih lanjut',
 				]);
 		}
 
@@ -177,7 +179,7 @@ class OutletController extends Controller
 
     public function getOutletInfo($id){
 
-        $capsters = Employee::where('staff_position', '8')->where('outlet_id', $id)->selectRaw('id, name')->get();
+        $capsters = Employee::whereIn('staff_position', ['8', '9', '10'])->where('outlet_id', $id)->selectRaw('id, name, staff_position')->get();
         $servicePrices = \DB::table('service_prices')
                         ->selectRaw('service_prices.service_id, services.name, sum(case when service_prices.type=1 then price else 0 end) as adult_price, sum(case when service_prices.type=2 then price else 0 end) as kid_price')
                         ->join('services', 'service_prices.service_id', '=', 'services.id')

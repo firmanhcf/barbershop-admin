@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Profile')
+@section('title', 'Profil')
 
 @section('navbar')
     @include('partials.navbar')
@@ -20,7 +20,7 @@
     <!-- Bread crumb -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-primary">Profile</h4>
+            <h4 class="text-primary">Profil</h4>
         </div>
     </div>
     <!-- End Bread crumb -->
@@ -37,7 +37,7 @@
                             
                             <div class="col-lg-6">
                                 <div class="card-title">
-                                    Profile
+                                    Profil
                                     <hr>
                                 </div>
                                 <div class="card-body">
@@ -53,8 +53,8 @@
                                                     </div>
                                                    
                                                     <div>
-                                                        <button type="button" class="btn btn-primary m-t-15" onclick="changePhoto()">Change Photo</button>
-                                                        <button type="submit" class="btn btn-primary m-t-15" >Save Photo</button>
+                                                        <button type="button" class="btn btn-primary m-t-15" onclick="changePhoto()">Ganti Foto</button>
+                                                        <button type="submit" class="btn btn-primary m-t-15" >Simpan Foto</button>
                                                         {{ csrf_field() }}
                                                     </div>
 
@@ -64,24 +64,24 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="nik">Employee ID <span class="text-danger">*</span></label>
+                                            <label class="col-lg-4" for="nik">ID Karyawan <span class="text-danger">*</span></label>
                                             <div class="col-lg-7">
                                                 <input type="text" class="form-control input-sm no-event" id="nik" name="nik" value="{{ $employee->nik }}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="name">Name <span class="text-danger">*</span></label>
+                                            <label class="col-lg-4" for="name">Nama <span class="text-danger">*</span></label>
                                             <div class="col-lg-7">
-                                                <input type="text" class="form-control input-sm no-event" id="name" name="name" placeholder="Type name..." value="{{ $employee->name }}" readonly>
+                                                <input type="text" class="form-control input-sm no-event" id="name" name="name"  value="{{ $employee->name }}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="province">Province <span class="text-danger">*</span></label>
+                                            <label class="col-lg-4" for="province">Provinsi <span class="text-danger">*</span></label>
                                             <div class="col-lg-7">
                                                 <select class="form-control input-sm no-event" id="province" name="province" onchange="getRegency()" readonly>
-                                                    <option value="">Select Province</option>
+                                                    <option value="">Pilih Provinsi</option>
                                                     @foreach($provinces as $province)
                                                         <option value="{{ $province->id }}" {{ ($province->id == $employee->province)?'selected':'' }}>{{ ucwords($province->name) }}</option>
                                                     @endforeach
@@ -90,10 +90,10 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="regency">Regency <span class="text-danger">*</span></label>
+                                            <label class="col-lg-4" for="regency">Kabupaten/Kota <span class="text-danger">*</span></label>
                                             <div class="col-lg-7">
                                                 <select class="form-control input-sm no-event" id="regency" name="regency" onchange="getDistrict()" readonly>
-                                                    <option value="">Select Regency</option>
+                                                    <option value="">Pilih Kabupaten/Kota</option>
                                                     @foreach($regencies as $regency)
                                                         <option value="{{ $regency->id }}" {{ ($regency->id == $employee->regency)?'selected':'' }}>{{ ucwords($regency->name) }}</option>
                                                     @endforeach
@@ -102,10 +102,10 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="district">District <span class="text-danger">*</span></label>
+                                            <label class="col-lg-4" for="district">Kecamatan <span class="text-danger">*</span></label>
                                             <div class="col-lg-7">
                                                 <select class="form-control input-sm no-event" id="district" name="district" readonly>
-                                                    <option value="">Select District</option>
+                                                    <option value="">Pilih Kecamatan</option>
                                                     @foreach($districts as $district)
                                                         <option value="{{ $district->id }}" {{ ($district->id == $employee->district)?'selected':'' }}>{{ ucwords($district->name) }}</option>
                                                     @endforeach
@@ -114,24 +114,24 @@
                                         </div>
                                         
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="address">Address <span class="text-danger">*</span></label>
+                                            <label class="col-lg-4" for="address">Alamat <span class="text-danger">*</span></label>
                                             <div class="col-lg-7">
-                                                <input type="text" class="form-control input-sm no-event" id="address" name="address" placeholder="Type address..." value="{{ $employee->address }}" readonly>
+                                                <input type="text" class="form-control input-sm no-event" id="address" name="address" value="{{ $employee->address }}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="birthdate">Birthdate <span class="text-danger">*</span></label>
+                                            <label class="col-lg-4" for="birthdate">Tanggal Lahir <span class="text-danger">*</span></label>
                                             <div class="col-lg-7">
-                                                <input type="text" class="form-control input-sm datepicker no-event" id="birthdate" name="birthdate" placeholder="Choose birthdate..." value="{{ $employee->birthdate }}" readonly>
+                                                <input type="text" class="form-control input-sm datepicker no-event" id="birthdate" name="birthdate"  value="{{ $employee->birthdate }}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="religion">Religion <span class="text-danger">*</span></label>
+                                            <label class="col-lg-4" for="religion">Agama <span class="text-danger">*</span></label>
                                             <div class="col-lg-7">
                                                 <select class="form-control input-sm no-event" id="religion" name="religion" readonly>
-                                                    <option value="">Select Religion</option>
+                                                    <option value="">Pilih Agama</option>
                                                     @foreach(config('app.religion') as $key => $religion)
                                                         <option value="{{$key}}" {{ ($key == $employee->religion)?'selected':'' }}>{{$religion}}</option>
                                                     @endforeach
@@ -140,17 +140,17 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="id_card_number">ID Card Number <span class="text-danger">*</span></label>
+                                            <label class="col-lg-4" for="id_card_number">Nomor Identitas <span class="text-danger">*</span></label>
                                             <div class="col-lg-7">
-                                                <input type="text" class="form-control input-sm no-event" id="id_card_number" name="id_card_number" placeholder="Type ID card number..." value="{{ $employee->id_card_number }}" readonly>
+                                                <input type="text" class="form-control input-sm no-event" id="id_card_number" name="id_card_number"  value="{{ $employee->id_card_number }}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4" for="last_education">Last Education <span class="text-danger">*</span></label>
+                                            <label class="col-lg-4" for="last_education">Pendidikan Terakhir <span class="text-danger">*</span></label>
                                             <div class="col-lg-7">
                                                 <select class="form-control input-sm no-event" id="last_education" name="last_education" readonly>
-                                                    <option value="">Select Last Education</option>
+                                                    <option value="">Pilih Pendidikan Terakhir</option>
                                                     @foreach(config('app.last_education') as $key => $education)
                                                         <option value="{{$key}}" {{ ($key == $employee->last_education)?'selected':'' }}>{{$education}}</option>
                                                     @endforeach
@@ -165,7 +165,7 @@
 
                             <div class="col-lg-6">
                                 <div class="card-title">
-                                    Change Password
+                                    Ganti Password
                                     <hr>
                                 </div>
                                 <div class="card-body">
@@ -173,29 +173,44 @@
                                         <div class="form-validation">
 
                                             <div class="form-group row">
-                                                <label class="col-lg-4" for="current_password">Current Password <span class="text-danger">*</span></label>
-                                                <div class="col-lg-7">
-                                                    <input type="password" class="form-control input-sm" id="current_password" name="current_password" placeholder="Type your current password...">
+                                                <label class="col-lg-4" for="current_password">Password Lama <span class="text-danger">*</span></label>
+                                                <div class="col-lg-6">
+                                                    <input type="password" class="form-control input-sm" id="current_password" name="current_password" >
+                                                </div>
+                                                <div class="col-lg-1">
+                                                    <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Password yang sedang digunakan saat ini">
+                                                        <i class="fa fa-question-circle-o fa-lg"></i>
+                                                    </a>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-lg-4" for="new_password">New Password <span class="text-danger">*</span></label>
-                                                <div class="col-lg-7">
-                                                    <input type="password" class="form-control input-sm" id="new_password" name="new_password" placeholder="Type your new password...">
+                                                <label class="col-lg-4" for="new_password">Password Baru <span class="text-danger">*</span></label>
+                                                <div class="col-lg-6">
+                                                    <input type="password" class="form-control input-sm" id="new_password" name="new_password" >
+                                                </div>
+                                                <div class="col-lg-1">
+                                                    <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Password baru minimal terdiri dari 8 karakter, harus berbeda dengan password lama">
+                                                        <i class="fa fa-question-circle-o fa-lg"></i>
+                                                    </a>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-lg-4" for="confirm_password">Confirm New Password <span class="text-danger">*</span></label>
-                                                <div class="col-lg-7">
-                                                    <input type="password" class="form-control input-sm" id="confirm_password" name="confirm_password" placeholder="Type your new password again...">
+                                                <label class="col-lg-4" for="confirm_password">Konfirmasi Password Baru <span class="text-danger">*</span></label>
+                                                <div class="col-lg-6">
+                                                    <input type="password" class="form-control input-sm" id="confirm_password" name="confirm_password" >
+                                                </div>
+                                                <div class="col-lg-1">
+                                                    <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Password minimal terdiri dari 8 karakter dan harus sama dengan password di atas">
+                                                        <i class="fa fa-question-circle-o fa-lg"></i>
+                                                    </a>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
                                                 <div class="col-lg-8 ml-auto sweetalert">
-                                                    <button type="button" class="btn btn-primary m-t-15 sweet-confirm" >Update Password</button>
+                                                    <button type="button" class="btn btn-primary m-t-15 sweet-confirm" >Ganti Password</button>
                                                 </div>
                                             </div>
                                         </div>
