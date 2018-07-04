@@ -80,39 +80,33 @@
                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>Tanggal</th>
-                                                <th>Provinsi</th>
-                                                <th>Outlet</th>
-                                                <th>Kapster</th>
-                                                <th>Nama Pelanggan</th>
-                                                <th>Diskon (%)</th>
-                                                <th>Total (Rp)</th>
-                                                
+                                                <th rowspan="2">ID Outlet</th>
+                                                <th rowspan="2">Nama Outlet</th>
+                                                <th rowspan="2">Alamat</th>
+                                                <th rowspan="2">Kota/Kabupaten</th>
+                                                <th colspan="4"><center>Transaksi</center></th>
+                                                <th rowspan="2">Total</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Potong Rambut</th>
+                                                <th>Cukur Jenggot</th>
+                                                <th>Refleksi</th>
+                                                <th>Training</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($transactionsOfToday as $transaction)
                                                 <tr>
 
-                                                    <td>
-                                                        {{ date_format($transaction -> created_at,"d-M-y") }}
-                                                        <br>
-                                                        {{ date_format($transaction -> created_at,"H:i A") }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $transaction->outlet->provinces->name }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $transaction->outlet->outlet_id }}
-                                                        <br>
-                                                        {{ $transaction->outlet->address }}, {{ $transaction->outlet->districts->name }}
-                                                        <br>
-                                                        {{ $transaction->outlet->regencies->name }}
-                                                    </td>
-                                                    <td>{{ $transaction -> capster -> name }}</td>
-                                                    <td>{{ $transaction -> customer -> name }}</td>
-                                                    <td>{{ $transaction -> discount }}</td>
-                                                    <td>{{ number_format($transaction -> getTotalPriceAfterDiscount(),2,",",".") }}</td>
+                                                    <td>{{ $transaction->outlet_id }}</td>
+                                                    <td>{{ $transaction->name }}</td>
+                                                    <td>{{ $transaction->address }}</td>
+                                                    <td>{{ $transaction->regency }}</td>
+                                                    <td>{{ $transaction->hair_cut }}</td>
+                                                    <td>{{ $transaction->shave }}</td>
+                                                    <td>{{ $transaction->massage }}</td>
+                                                    <td>{{ $transaction->training }}</td>
+                                                    <td>{{ number_format($transaction -> total_after_discount,2,",",".") }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -128,38 +122,33 @@
                                     <table id="example24" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>Tanggal</th>
-                                                <th>Provinsi</th>
-                                                <th>Outlet</th>
-                                                <th>Kapster</th>
-                                                <th>Nama Pelanggan</th>
-                                                <th>Diskon (%)</th>
-                                                <th>Total (Rp)</th>
+                                                <th rowspan="2">ID Outlet</th>
+                                                <th rowspan="2">Nama Outlet</th>
+                                                <th rowspan="2">Alamat</th>
+                                                <th rowspan="2">Kota/Kabupaten</th>
+                                                <th colspan="4">Transaksi</th>
+                                                <th rowspan="2">Total</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Potong Rambut</th>
+                                                <th>Cukur Jenggot</th>
+                                                <th>Refleksi</th>
+                                                <th>Training</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($transactionsOfThisMonth as $transaction)
                                                 <tr>
 
-                                                    <td>
-                                                        {{ date_format($transaction -> created_at,"d-M-y") }}
-                                                        <br>
-                                                        {{date_format($transaction -> created_at,"H:i A") }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $transaction->outlet->provinces->name }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $transaction->outlet->outlet_id }}
-                                                        <br>
-                                                        {{ $transaction->outlet->address }}, {{ $transaction->outlet->districts->name }}
-                                                        <br>
-                                                        {{ $transaction->outlet->regencies->name }}
-                                                    </td>
-                                                    <td>{{ $transaction -> capster -> name }}</td>
-                                                    <td>{{ $transaction -> customer -> name }}</td>
-                                                    <td>{{ $transaction -> discount }}</td>
-                                                    <td>{{ number_format($transaction -> getTotalPriceAfterDiscount(),2,",",".") }}</td>
+                                                    <td>{{ $transaction->outlet_id }}</td>
+                                                    <td>{{ $transaction->name }}</td>
+                                                    <td>{{ $transaction->address }}</td>
+                                                    <td>{{ $transaction->regency }}</td>
+                                                    <td>{{ $transaction->hair_cut }}</td>
+                                                    <td>{{ $transaction->shave }}</td>
+                                                    <td>{{ $transaction->massage }}</td>
+                                                    <td>{{ $transaction->training }}</td>
+                                                    <td>{{ number_format($transaction -> total_after_discount,2,",",".") }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
