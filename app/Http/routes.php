@@ -22,6 +22,8 @@ Route::get('config/district/{regency}', 'Config\LocationController@getDistrict')
 Route::get('config/service/{partnership}', 'Config\PartnershipServicesController@getServices');
 Route::get('outlet/info/{id}', 'Dashboard\OutletController@getOutletInfo');
 
+Route::post('sendmail', 'Config\LandingPageController@sendMail');
+
 Route::group(['middleware' => 'auth'], function () {
 
 	//# Dashboard

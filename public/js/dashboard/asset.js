@@ -1,3 +1,7 @@
+$('.datepicker').datepicker({
+    format: 'dd/mm/yyyy'
+}); 
+
 var form_validation = function() {
     var e = function() {
             jQuery(".form-valide").validate({
@@ -28,6 +32,13 @@ var form_validation = function() {
                         required: !0,
                         number: !0
                     },
+                    "age": {
+                        required: !0,
+                        number: !0
+                    },
+                    "arrival": {
+                        required: !0
+                    },
                     "status": {
                         required: !0
                     }
@@ -48,6 +59,13 @@ var form_validation = function() {
                     "price": {
                         required: "Masukkan harga satuan aset",
                         number: "Harga satuan aset harus berupa nomor"
+                    },
+                    "age": {
+                        required: "Masukkan umur ekonomis aset",
+                        number: "Umur ekonomis aset harus berupa nomor"
+                    },
+                    "arrival": {
+                        required: "Silakan pilih tanggal diterima"
                     },
                     "status": {
                         required: "Silakan pilih kondisi aset"

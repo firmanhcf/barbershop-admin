@@ -48,6 +48,8 @@ class AssetController extends Controller
         $newAsset -> item_id = $request -> item_id;
         $newAsset -> qty = $request -> qty;
         $newAsset -> price = $request -> price;
+        $newAsset -> age = $request -> age;
+        $newAsset -> arrival = \DateTime::createFromFormat('d/m/Y', $request -> arrival);
         $newAsset -> status = $request -> status;
         $newAsset -> create_by = \Auth::user()->id;
 
@@ -88,6 +90,7 @@ class AssetController extends Controller
     public function showEditAsset($id)
     {
         $asset = Asset::findOrFail($id);
+        $asset->arrival = Carbon::parse($asset->arrival)->format('d/m/Y');
         $items = AssetItem::all();
         $assetStatus = config('app.asset_status');
 
@@ -112,6 +115,8 @@ class AssetController extends Controller
         $asset -> item_id = $request -> item_id;
         $asset -> qty = $request -> qty;
         $asset -> price = $request -> price;
+        $asset -> age = $request -> age;
+        $asset -> arrival = \DateTime::createFromFormat('d/m/Y', $request -> arrival);
         $asset -> status = $request -> status;
         $asset -> update_by = \Auth::user()->id;
 

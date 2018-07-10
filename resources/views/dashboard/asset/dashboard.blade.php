@@ -145,10 +145,34 @@
                                                 <div class="form-group row">
                                                     <label class="col-lg-4" for="price">Price <span class="text-danger">*</span></label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control input-sm" id="price" name="price">
+                                                        <input type="number" class="form-control input-sm" id="price" name="price">
                                                     </div>
                                                     <div class="col-lg-1">
                                                         <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Harga satuan aset">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" for="age">Umur Ekonomis <span class="text-danger">*</span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="number" class="form-control input-sm" id="age" name="age">
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Umur Ekonomis Aset, satuan bulan">
+                                                            <i class="fa fa-question-circle-o fa-lg"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" for="arrival">Tgl. Diterima<span class="text-danger"></span></label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control input-sm datepicker" id="arrival" name="arrival" >
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <a class="btn btn-default btn-sm no-lp" data-container="body" data-toggle="popover" data-placement="right" data-content="Tanggal asset diterima dan masuk outlet">
                                                             <i class="fa fa-question-circle-o fa-lg"></i>
                                                         </a>
                                                     </div>

@@ -40,6 +40,7 @@ $(document).ready(function() {
         });
     });
 $('#example23').DataTable({
+    fixedHeader: true,
     dom: 'Bfrtip',
     buttons: [
         'copy', 'csv', 'excel', 'pdf', 'print'
@@ -47,6 +48,7 @@ $('#example23').DataTable({
 });
 
 $('#example24').DataTable({
+    fixedHeader: true,
     dom: 'Bfrtip',
     buttons: [
         'copy', 'csv', 'excel', 'pdf', 'print'
