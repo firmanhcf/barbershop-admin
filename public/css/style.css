@@ -6962,3 +6962,11 @@ tbody tr td:last-child {
 .purple-bg{
   background: url(../images/background/391378f4.png) repeat;
 }
+
+
+
+tbody {
+    height: 300px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: auto;  /* Hide the horizontal scroll */
+}

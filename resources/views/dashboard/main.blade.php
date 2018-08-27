@@ -77,36 +77,36 @@
 
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                    <table class="table-data display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th rowspan="2">ID Outlet</th>
-                                                <th rowspan="2">Nama Outlet</th>
-                                                <th rowspan="2">Alamat</th>
-                                                <th rowspan="2">Kota/Kabupaten</th>
+                                                <th rowspan="2" width="15%">ID Outlet</th>
+                                                <th rowspan="2" width="15%">Nama Outlet</th>
+                                                <th rowspan="2" width="20%">Alamat</th>
+                                                <th rowspan="2" width="15%">Kota/Kabupaten</th>
                                                 <th colspan="4"><center>Transaksi</center></th>
-                                                <th rowspan="2">Total</th>
+                                                <th rowspan="2" width="15%">Total</th>
                                             </tr>
                                             <tr>
-                                                <th>Potong Rambut</th>
-                                                <th>Cukur Jenggot</th>
-                                                <th>Refleksi</th>
-                                                <th>Training</th>
+                                                <th width="25%">Potong Rambut</th>
+                                                <th width="25%">Cukur Jenggot</th>
+                                                <th width="25%">Refleksi</th>
+                                                <th width="25%">Training</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($transactionsOfToday as $transaction)
                                                 <tr>
 
-                                                    <td>{{ $transaction->outlet_id }}</td>
-                                                    <td>{{ $transaction->name }}</td>
-                                                    <td>{{ $transaction->address }}</td>
-                                                    <td>{{ $transaction->regency }}</td>
-                                                    <td>{{ $transaction->hair_cut }}</td>
-                                                    <td>{{ $transaction->shave }}</td>
-                                                    <td>{{ $transaction->massage }}</td>
-                                                    <td>{{ $transaction->training }}</td>
-                                                    <td>{{ number_format($transaction -> total_after_discount,2,",",".") }}</td>
+                                                    <td width="15%">{{ $transaction->outlet_id }}</td>
+                                                    <td width="15%">{{ $transaction->name }}</td>
+                                                    <td width="20%">{{ $transaction->address }}</td>
+                                                    <td width="15%">{{ $transaction->regency }}</td>
+                                                    <td width="5%">{{ $transaction->hair_cut }}</td>
+                                                    <td width="5%">{{ $transaction->shave }}</td>
+                                                    <td width="5%">{{ $transaction->massage }}</td>
+                                                    <td width="5%">{{ $transaction->training }}</td>
+                                                    <td width="15%">{{ number_format($transaction -> total_after_discount,2,",",".") }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -119,7 +119,7 @@
                             
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example24" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                    <table class="table-data display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th rowspan="2">ID Outlet</th>

@@ -93,13 +93,13 @@ class EmployeeController extends Controller
 
 			if($newEmployeePKS -> save()){
 
-                // \Mail::send('emails.login', ['name' => $request -> name, 'email' => $request -> email, 'password' => $request -> password], function ($message) use ($request) {
+                \Mail::send('emails.login', ['data' => $request], function ($message) use ($request) {
 
-                //     $message->subject('User Login Information');
-                //     $message->from('no-reply@bigsmile.id', 'Big Smile');
-                //     $message->to('sampahbebas@gmail.com');
+                    $message->subject('User Login Information');
+                    $message->from('no-reply@bigsmile.id', 'Big Smile');
+                    $message->to($request -> email);
 
-                // });
+                });
 
 				return redirect()
 				->back()

@@ -38,7 +38,7 @@
                     <ul class="nav nav-tabs profile-tab" role="tablist">
                         <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#list" role="tab"><i class="fa fa-table"></i> Daftar Karyawan</a> </li>
                         <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#list-caps" role="tab"><i class="fa fa-table"></i> Daftar Kapster/Terapis/Trainer</a> </li>
-                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#add" role="tab"><i class="fa fa-plus-square"></i> Tambah Karyawan/</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#add" role="tab"><i class="fa fa-plus-square"></i> Tambah Karyawan/Terapis/Trainer</a> </li>
                     </ul>
 
                     <div class="tab-content">
@@ -46,7 +46,7 @@
 
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                    <table class="table-data display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>Act</th>
@@ -84,7 +84,7 @@
 
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example24" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                    <table class="table-data display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>Act</th>

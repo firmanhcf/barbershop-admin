@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => 'mg.bigsmile.id',
-        'secret' => 'ea05355e220c6d4d079d009ddc666394-770f03c4-7c3dd3b1',
+        'domain' => '',
+        'secret' => '',
     ],
 
     'mandrill' => [
